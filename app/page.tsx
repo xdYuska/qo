@@ -1,22 +1,21 @@
-import { createClient } from "@/lib/supabase/server";
+import { getAllProducts } from "@/lib/products";
+import ProductCard from "@/components/storefront/ProductCard";
 
 export default async function Home() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("products").select("name, price, slug");
+  const products = await getAllProducts();
 
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>Products Test</h1>
-      {error ? (
-        <p style={{ color: "red" }}>Error: {error.message}</p>
+    <main className="max-w-6xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-semibold mb-6">All Products</h1>
+
+      {products.length === 0 ? (
+        <p className="text-gray-500">No products found.</p>
       ) : (
-        <ul>
-          {data.map((product) => (
-            <li key={product.slug}>
-              {product.name} — ${product.price}
-            </li>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
-        </ul>
+        </div>
       )}
     </main>
   );

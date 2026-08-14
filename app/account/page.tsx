@@ -5,11 +5,11 @@ import { logout } from "@/app/logout/actions";
 export default async function AccountPage() {
   const supabase = await createClient();
 
-  const {
+const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
+  if (!user || user.is_anonymous) {
     redirect("/login");
   }
 

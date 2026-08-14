@@ -10,16 +10,24 @@ export async function signup(formData: FormData) {
   const password = formData.get("password") as string;
   const fullName = formData.get("fullName") as string;
 
-  const { error } = await supabase.auth.signUp({
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.updateUser({
     email,
     password,
-    options: {
-      data: { full_name: fullName },
-    },
+    data: { full_name: fullName },
   });
 
   if (error) {
     redirect(`/signup?error=${encodeURIComponent(error.message)}`);
+  }
+
+  if (user) {
+    await supabase
+      .from("profiles")
+      .update({ full_name: fullName })
+      .eq("id", user.id);
   }
 
   redirect("/account");

@@ -8,6 +8,8 @@ export default async function Header() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const isRealUser = user && !user.is_anonymous;
+
   return (
     <header className="border-b">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -20,7 +22,7 @@ export default async function Header() {
             Products
           </Link>
 
-          {user ? (
+          {isRealUser ? (
             <>
               <Link href="/account" className="hover:underline">
                 My Account

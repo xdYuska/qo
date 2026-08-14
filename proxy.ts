@@ -29,9 +29,6 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    await supabase.auth.signInAnonymously();
-  }
 
   return supabaseResponse;
 }

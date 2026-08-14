@@ -104,3 +104,60 @@ export async function removeCartItem(cartItemId: string) {
 
   revalidatePath("/cart");
 }
+
+export async function validateCartStock() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("You must be logged in.");
+  }
+
+  const { data: cart, error: cartError } = await supabase
+    .from("carts")
+    .select("id")
+    .eq("user_id", user.id)
+    .single();
+
+  if (cartError || !cart) {
+    throw new Error("Cart not found.");
+  }
+
+  const { data: cartItems, error: itemsError } = await supabase
+    .from("cart_items")
+    .select(`
+      id,
+      quantity,
+      products (
+        id,
+        name,
+        stock_quantity
+      )
+    `)
+    .eq("cart_id", cart.id);
+
+  if (itemsError) {
+    throw new Error("Could not check cart stock.");
+  }
+
+  for (const item of cartItems ?? []) {
+    const product = Array.isArray(item.products)
+  ? item.products[0]
+  : item.products;
+
+    if (!product) {
+      throw new Error("A product in your cart is no longer available.");
+    }
+
+    if (item.quantity > product.stock_quantity) {
+      throw new Error(
+        `Only ${product.stock_quantity} of ${product.name} are currently available.`
+      );
+    }
+  }
+
+  return true;
+}

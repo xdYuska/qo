@@ -22,6 +22,10 @@ export default async function Header() {
             Products
           </Link>
 
+          <Link href="/cart" className="hover:underline">
+            Cart
+          </Link>
+
           {isRealUser ? (
             <>
               <Link href="/account" className="hover:underline">

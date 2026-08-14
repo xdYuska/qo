@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import { getProductImageUrl } from "@/lib/supabase/images";
-import { updateCartItemQuantity } from "./actions";
+import {
+  updateCartItemQuantity,
+  removeCartItem,
+} from "./actions";
 
 type CartItemProps = {
   item: {
@@ -22,10 +25,11 @@ type CartItemProps = {
 export default function CartItem({ item }: CartItemProps) {
   const [quantity, setQuantity] = useState(item.quantity);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
 
   const product = item.products;
 
-  if (!product) {
+  if (!product || isRemoved) {
     return null;
   }
 
@@ -33,33 +37,62 @@ export default function CartItem({ item }: CartItemProps) {
   const stockQuantity = product.stock_quantity;
 
   async function changeQuantity(newQuantity: number) {
-    if (
-      newQuantity < 1 ||
-      newQuantity > stockQuantity ||
-      isUpdating
-    ) {
+    if (isUpdating || newQuantity < 1) {
+      return;
+    }
+
+    // If the cart quantity is above current stock,
+    // clicking minus brings it directly down to available stock.
+    if (quantity > stockQuantity && newQuantity < quantity) {
+      newQuantity = stockQuantity;
+    }
+
+    // Never allow the quantity to exceed current stock.
+    if (newQuantity > stockQuantity) {
       return;
     }
 
     const previousQuantity = quantity;
 
-    // Update the UI immediately.
     setQuantity(newQuantity);
     setIsUpdating(true);
 
     try {
       await updateCartItemQuantity(item.id, newQuantity);
     } catch (error) {
-  console.error("CART QUANTITY UPDATE FAILED:", error);
+      console.error("CART QUANTITY UPDATE FAILED:", error);
 
-  setQuantity(previousQuantity);
+      setQuantity(previousQuantity);
 
-  alert(
-    error instanceof Error
-      ? error.message
-      : "Failed to update cart quantity."
-  );
-} finally {
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Failed to update cart quantity."
+      );
+    } finally {
+      setIsUpdating(false);
+    }
+  }
+
+  async function handleRemove() {
+    // Remove from the UI immediately.
+    setIsRemoved(true);
+    setIsUpdating(true);
+
+    try {
+      await removeCartItem(item.id);
+    } catch (error) {
+      console.error("CART ITEM REMOVE FAILED:", error);
+
+      // Restore the item if the server-side deletion failed.
+      setIsRemoved(false);
+
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Unable to remove item."
+      );
+    } finally {
       setIsUpdating(false);
     }
   }
@@ -106,9 +139,7 @@ export default function CartItem({ item }: CartItemProps) {
 
           <button
             type="button"
-            disabled={
-              isUpdating || quantity >= stockQuantity
-            }
+            disabled={isUpdating || quantity >= stockQuantity}
             onClick={() => changeQuantity(quantity + 1)}
             className="w-8 h-8 border rounded-md disabled:opacity-40"
           >
@@ -119,6 +150,15 @@ export default function CartItem({ item }: CartItemProps) {
         <p className="text-[#08a2c1] font-medium mt-2">
           Total: {(Number(product.price) * quantity).toFixed(2)} ₼
         </p>
+
+        <button
+          type="button"
+          disabled={isUpdating}
+          onClick={handleRemove}
+          className="mt-3 text-sm text-red-600 hover:text-red-700 disabled:opacity-40"
+        >
+          Remove
+        </button>
       </div>
     </div>
   );

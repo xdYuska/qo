@@ -70,3 +70,37 @@ export async function updateCartItemQuantity(
 
   revalidatePath("/cart");
 }
+
+export async function removeCartItem(cartItemId: string) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("You must be logged in.");
+  }
+
+  const { data: cart, error: cartError } = await supabase
+    .from("carts")
+    .select("id")
+    .eq("user_id", user.id)
+    .single();
+
+  if (cartError || !cart) {
+    throw new Error("Cart not found.");
+  }
+
+  const { error: deleteError } = await supabase
+    .from("cart_items")
+    .delete()
+    .eq("id", cartItemId)
+    .eq("cart_id", cart.id);
+
+  if (deleteError) {
+    throw new Error("Could not remove item from cart.");
+  }
+
+  revalidatePath("/cart");
+}

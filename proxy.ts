@@ -25,8 +25,13 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  // Refresh the session if it exists — this is the key line.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    await supabase.auth.signInAnonymously();
+  }
 
   return supabaseResponse;
 }

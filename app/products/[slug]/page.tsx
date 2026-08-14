@@ -50,10 +50,10 @@ export default async function ProductPage({
         </div>
 
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-semibold text-[#08a2c1]">
             {product.name}
           </h1>
-          <p className="text-xl text-gray-700 mt-2">${product.price}</p>
+          <p className="text-xl text-gray-700 mt-2">{product.price} ₼</p>
 
           {product.description && (
             <p className="text-gray-600 mt-4">{product.description}</p>

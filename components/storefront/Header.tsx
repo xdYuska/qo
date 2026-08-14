@@ -13,7 +13,7 @@ export default async function Header() {
   return (
     <header className="border-b">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold">
+        <Link href="/" className="text-lg font-semibold text-[#08a2c1]">
           Qediroglu Supermarket
         </Link>
 

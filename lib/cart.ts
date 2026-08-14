@@ -117,3 +117,64 @@ export async function mergeCartItemsIntoCurrentCart(
     }
   }
 }
+
+export async function getCart() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return null;
+  }
+
+  const { data: cart, error: cartError } = await supabase
+    .from("carts")
+    .select("id")
+    .eq("user_id", user.id)
+    .single();
+
+  if (cartError || !cart) {
+    return null;
+  }
+
+  const { data: items, error: itemsError } = await supabase
+    .from("cart_items")
+    .select("id, quantity, product_id")
+    .eq("cart_id", cart.id);
+
+  if (itemsError) {
+    console.error("Error fetching cart items:", itemsError.message);
+    throw new Error("Could not load cart.");
+  }
+
+  if (!items || items.length === 0) {
+    return {
+      id: cart.id,
+      items: [],
+    };
+  }
+
+  const productIds = items.map((item) => item.product_id);
+
+  const { data: products, error: productsError } = await supabase
+    .from("products")
+    .select("id, name, price, image_path, stock_quantity")
+    .in("id", productIds);
+
+  if (productsError) {
+    console.error("Error fetching cart products:", productsError.message);
+    throw new Error("Could not load cart products.");
+  }
+
+  const itemsWithProducts = items.map((item) => ({
+    ...item,
+    products: products?.find((product) => product.id === item.product_id) ?? null,
+  }));
+
+  return {
+    id: cart.id,
+    items: itemsWithProducts,
+  };
+}

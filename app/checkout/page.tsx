@@ -1,4 +1,5 @@
 import { getCart } from "@/lib/cart";
+import CheckoutForm from "./CheckoutForm";
 
 export default async function CheckoutPage() {
   const cart = await getCart();
@@ -22,7 +23,10 @@ export default async function CheckoutPage() {
       return total;
     }
 
-    return total + Number(item.products.price) * item.quantity;
+    return (
+      total +
+      Number(item.products.price) * item.quantity
+    );
   }, 0);
 
   return (
@@ -38,58 +42,7 @@ export default async function CheckoutPage() {
             Delivery Information
           </h2>
 
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="fullName"
-                className="block text-sm font-medium mb-1"
-              >
-                Full Name
-              </label>
-
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                className="w-full border rounded-md px-3 py-2"
-                placeholder="Your full name"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium mb-1"
-              >
-                Phone
-              </label>
-
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                className="w-full border rounded-md px-3 py-2"
-                placeholder="Your phone number"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="address"
-                className="block text-sm font-medium mb-1"
-              >
-                Delivery Address
-              </label>
-
-              <textarea
-                id="address"
-                name="address"
-                rows={4}
-                className="w-full border rounded-md px-3 py-2"
-                placeholder="Your delivery address"
-              />
-            </div>
-          </div>
+          <CheckoutForm />
         </section>
 
         {/* Order Summary */}
@@ -105,6 +58,7 @@ export default async function CheckoutPage() {
               }
 
               const product = item.products;
+
               const lineTotal =
                 Number(product.price) * item.quantity;
 
@@ -141,13 +95,6 @@ export default async function CheckoutPage() {
               </p>
             </div>
           </div>
-
-          <button
-            type="button"
-            className="w-full mt-6 px-5 py-3 rounded-md bg-[#08a2c1] text-white hover:opacity-90"
-          >
-            Place Order
-          </button>
         </section>
       </div>
     </main>

@@ -1,21 +1,23 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { placeOrder } from "./actions";
 
 export default function CheckoutForm() {
+  const router = useRouter();
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [orderId, setOrderId] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (isSubmitting || orderId) {
+    if (isSubmitting) {
       return;
     }
 
@@ -23,13 +25,8 @@ export default function CheckoutForm() {
     setIsSubmitting(true);
 
     try {
-      const result = await placeOrder(
-        fullName,
-        phone,
-        address
-      );
-
-      setOrderId(result.orderId);
+      const result = await placeOrder(fullName, phone, email, address);
+      router.push(`/orders/${result.orderId}`);
     } catch (error) {
       console.error("CHECKOUT FAILED:", error);
 
@@ -38,29 +35,8 @@ export default function CheckoutForm() {
           ? error.message
           : "Failed to place your order."
       );
-    } finally {
       setIsSubmitting(false);
     }
-  }
-
-  if (orderId) {
-    return (
-      <div className="space-y-4">
-        <div className="border rounded-lg p-5">
-          <h2 className="text-xl font-semibold text-[#08a2c1]">
-            Order Placed Successfully
-          </h2>
-
-          <p className="mt-2 text-gray-600">
-            Your order has been created.
-          </p>
-
-          <p className="mt-2 font-medium">
-            Order ID: {orderId}
-          </p>
-        </div>
-      </div>
-    );
   }
 
   return (
@@ -102,6 +78,26 @@ export default function CheckoutForm() {
           disabled={isSubmitting}
           className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
           placeholder="Your phone number"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium mb-1"
+        >
+          Email
+        </label>
+
+        <input
+          id="email"
+          name="email"
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          disabled={isSubmitting}
+          className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
+          placeholder="you@example.com"
         />
       </div>
 

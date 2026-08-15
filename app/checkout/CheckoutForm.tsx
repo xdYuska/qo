@@ -10,6 +10,7 @@ export default function CheckoutForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState<"cash_on_delivery" | "online">("cash_on_delivery");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,7 +26,7 @@ export default function CheckoutForm() {
     setIsSubmitting(true);
 
     try {
-      const result = await placeOrder(fullName, phone, email, address);
+      const result = await placeOrder(fullName, phone, email, address, paymentMethod);
       router.push(`/orders/${result.orderId}`);
     } catch (error) {
       console.error("CHECKOUT FAILED:", error);
@@ -99,6 +100,36 @@ export default function CheckoutForm() {
           className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
           placeholder="you@example.com"
         />
+      </div>
+
+        <div>
+        <label className="block text-sm font-medium mb-1">
+          Payment Method
+        </label>
+
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              type="radio"
+              name="paymentMethod"
+              checked={paymentMethod === "cash_on_delivery"}
+              onChange={() => setPaymentMethod("cash_on_delivery")}
+              disabled={isSubmitting}
+            />
+            Cash on Delivery
+          </label>
+
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              type="radio"
+              name="paymentMethod"
+              checked={paymentMethod === "online"}
+              onChange={() => setPaymentMethod("online")}
+              disabled={isSubmitting}
+            />
+            Online Payment (Card)
+          </label>
+        </div>
       </div>
 
       <div>

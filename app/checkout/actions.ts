@@ -24,7 +24,8 @@ export async function placeOrder(
   fullName: string,
   phone: string,
   email: string,
-  deliveryAddress: string
+  deliveryAddress: string,
+  paymentMethod: "cash_on_delivery" | "online"
 ): Promise<PlaceOrderResult> {
   const trimmedFullName = fullName.trim();
   const trimmedPhone = phone.trim();
@@ -82,7 +83,7 @@ export async function placeOrder(
     p_phone: trimmedPhone,
     p_email: trimmedEmail,
     p_delivery_address: trimmedAddress,
-    p_payment_method: "cash_on_delivery",
+    p_payment_method: paymentMethod,
   });
 
   if (error) {

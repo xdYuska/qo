@@ -5,11 +5,19 @@ import { useRouter } from "next/navigation";
 import { placeOrder } from "./actions";
 import AddressPicker from "@/components/storefront/AddressPicker";
 
-export default function CheckoutForm() {
+type CheckoutFormProps = {
+  initialFullName?: string;
+  initialEmail?: string;
+};
+
+export default function CheckoutForm({
+  initialFullName = "",
+  initialEmail = "",
+}: CheckoutFormProps) {
   const router = useRouter();
-  const [fullName, setFullName] = useState("");
+  const [fullName, setFullName] = useState(initialFullName);
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(initialEmail);
   const [address, setAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<"cash_on_delivery" | "online">("cash_on_delivery");
 
@@ -27,7 +35,13 @@ export default function CheckoutForm() {
     setIsSubmitting(true);
 
     try {
-      const result = await placeOrder(fullName, phone, email, address, paymentMethod);
+      const result = await placeOrder(
+        fullName,
+        phone,
+        email,
+        address,
+        paymentMethod
+      );
       router.push(`/orders/${result.orderId}`);
     } catch (error) {
       console.error("CHECKOUT FAILED:", error);
@@ -44,10 +58,7 @@ export default function CheckoutForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label
-          htmlFor="fullName"
-          className="block text-sm font-medium mb-1"
-        >
+        <label htmlFor="fullName" className="block text-sm font-medium mb-1">
           Full Name
         </label>
 
@@ -64,10 +75,7 @@ export default function CheckoutForm() {
       </div>
 
       <div>
-        <label
-          htmlFor="phone"
-          className="block text-sm font-medium mb-1"
-        >
+        <label htmlFor="phone" className="block text-sm font-medium mb-1">
           Phone
         </label>
 
@@ -84,10 +92,7 @@ export default function CheckoutForm() {
       </div>
 
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium mb-1"
-        >
+        <label htmlFor="email" className="block text-sm font-medium mb-1">
           Email
         </label>
 
@@ -103,7 +108,7 @@ export default function CheckoutForm() {
         />
       </div>
 
-        <div>
+      <div>
         <label className="block text-sm font-medium mb-1">
           Payment Method
         </label>
@@ -138,10 +143,7 @@ export default function CheckoutForm() {
           Delivery Address
         </label>
 
-        <AddressPicker
-          onAddressChange={setAddress}
-          disabled={isSubmitting}
-        />
+        <AddressPicker onAddressChange={setAddress} disabled={isSubmitting} />
 
         <details className="mt-2">
           <summary className="text-xs text-gray-500 cursor-pointer">

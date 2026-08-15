@@ -1,7 +1,28 @@
 import { getCart } from "@/lib/cart";
+import { createClient } from "@/lib/supabase/server";
 import CheckoutForm from "./CheckoutForm";
 
 export default async function CheckoutPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  let initialFullName = "";
+  let initialEmail = "";
+
+  if (user && !user.is_anonymous) {
+    initialEmail = user.email ?? "";
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("full_name")
+      .eq("id", user.id)
+      .single();
+
+    initialFullName = profile?.full_name ?? "";
+  }
+
   const cart = await getCart();
 
   if (!cart || cart.items.length === 0) {
@@ -42,7 +63,10 @@ export default async function CheckoutPage() {
             Delivery Information
           </h2>
 
-          <CheckoutForm />
+          <CheckoutForm
+            initialFullName={initialFullName}
+            initialEmail={initialEmail}
+          />
         </section>
 
         {/* Order Summary */}

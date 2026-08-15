@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { placeOrder } from "./actions";
+import AddressPicker from "@/components/storefront/AddressPicker";
 
 export default function CheckoutForm() {
   const router = useRouter();
@@ -133,23 +134,28 @@ export default function CheckoutForm() {
       </div>
 
       <div>
-        <label
-          htmlFor="address"
-          className="block text-sm font-medium mb-1"
-        >
+        <label className="block text-sm font-medium mb-1">
           Delivery Address
         </label>
 
-        <textarea
-          id="address"
-          name="address"
-          rows={4}
-          value={address}
-          onChange={(event) => setAddress(event.target.value)}
+        <AddressPicker
+          onAddressChange={setAddress}
           disabled={isSubmitting}
-          className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
-          placeholder="Your delivery address"
         />
+
+        <details className="mt-2">
+          <summary className="text-xs text-gray-500 cursor-pointer">
+            Can&apos;t find your address? Enter it manually
+          </summary>
+          <textarea
+            rows={3}
+            value={address}
+            onChange={(event) => setAddress(event.target.value)}
+            disabled={isSubmitting}
+            className="w-full border rounded-md px-3 py-2 mt-2 disabled:opacity-60"
+            placeholder="Type your delivery address"
+          />
+        </details>
       </div>
 
       {errorMessage && (

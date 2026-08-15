@@ -27,3 +27,28 @@ export async function getOrderById(orderId: string) {
 
   return { ...order, items: items ?? [] };
 }
+
+export async function getOrdersForCurrentUser() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user || user.is_anonymous) {
+    return [];
+  }
+
+  const { data: orders, error } = await supabase
+    .from("orders")
+    .select("id, status, payment_method, total, created_at")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching orders:", error.message);
+    return [];
+  }
+
+  return orders;
+}

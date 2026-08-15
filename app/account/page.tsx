@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { logout } from "@/app/logout/actions";
+import Link from "next/link";
 
 export default async function AccountPage() {
   const supabase = await createClient();
@@ -44,6 +45,14 @@ const {
           Log out
         </button>
       </form>
+
+      <Link
+        href="/account/orders"
+        className="block mt-6 text-sm text-[#08a2c1] hover:underline"
+      >
+        View Order History
+      </Link>
+
     </main>
   );
 }

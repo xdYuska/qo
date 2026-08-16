@@ -54,15 +54,15 @@ export default function Footer() {
         <div>
           <h3 className="text-sm font-semibold">About</h3>
           <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
-            <Link href="/about#company" className="py-2 hover:underline">
-              Company
-            </Link>
-            <Link href="/about#distribution" className="py-2 hover:underline">
-              Distribution
-            </Link>
-            <Link href="/about#imports" className="py-2 hover:underline">
-              Imports
-            </Link>
+            <Link href="/#company" className="py-2 hover:underline">
+  Company
+</Link>
+<Link href="/#distribution" className="py-2 hover:underline">
+  Distribution
+</Link>
+<Link href="/#imports" className="py-2 hover:underline">
+  Imports
+</Link>
           </nav>
         </div>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SmoothScrollLink from "@/components/storefront/SmoothScrollLink";
 
 export default function Home() {
   return (
@@ -20,38 +21,85 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* Hub cards */}
+      {/* Jump-to-section cards */}
       <section className="max-w-6xl mx-auto px-4 pb-14 sm:pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Link
-            href="/about#company"
-            className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
-          >
+         <SmoothScrollLink 
+            href="#company"
+            className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition">
             <h2 className="font-semibold text-[#08a2c1]">Company</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               Who we are and what we stand for.
             </p>
-          </Link>
+          </SmoothScrollLink>
 
-          <Link
-            href="/about#distribution"
+          <SmoothScrollLink
+            href="#distribution"
             className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
           >
             <h2 className="font-semibold text-[#08a2c1]">Distribution</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               How we get products from source to shelf.
             </p>
-          </Link>
+          </SmoothScrollLink>
 
-          <Link
-            href="/about#imports"
+          <SmoothScrollLink
+            href="#imports"
             className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
           >
             <h2 className="font-semibold text-[#08a2c1]">Imports</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               The countries and partners we source from.
             </p>
-          </Link>
+          </SmoothScrollLink>
+        </div>
+      </section>
+
+      {/* Company */}
+      <section
+        id="company"
+        className="scroll-mt-20 border-t bg-black/[0.02] dark:bg-white/[0.03]"
+      >
+        <div className="max-w-3xl mx-auto px-4 py-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#08a2c1]">
+            Company
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
+            Qediroglu Supermarket brings fresh groceries and everyday
+            essentials to your door. We work with trusted local and
+            international suppliers to keep our shelves stocked with quality
+            products at fair prices.
+          </p>
+        </div>
+      </section>
+
+      {/* Distribution */}
+      <section id="distribution" className="scroll-mt-20 border-t">
+        <div className="max-w-3xl mx-auto px-4 py-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#08a2c1]">
+            Distribution
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
+            Our distribution network moves products from warehouse to shelf
+            quickly, so freshness and availability stay consistent across
+            every order.
+          </p>
+        </div>
+      </section>
+
+      {/* Imports */}
+      <section
+        id="imports"
+        className="scroll-mt-20 border-t bg-black/[0.02] dark:bg-white/[0.03]"
+      >
+        <div className="max-w-3xl mx-auto px-4 py-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#08a2c1]">
+            Imports
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
+            We source select products directly from partners abroad, bringing
+            a wider range of quality goods to our customers.
+          </p>
         </div>
       </section>
     </main>

@@ -23,7 +23,7 @@ export default async function Header() {
             alt="Qediroglu"
             width={160}
             height={40}
-            className="h-10 w-auto sm:h-12"
+            className="h-10 w-auto sm:h-20"
             priority
           />
           <span className="text-lg font-semibold text-[#08a2c1]">

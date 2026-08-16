@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getFavoriteProductIds } from "@/lib/favorites";
 
 export async function getCategoryBySlug(slug: string) {
   const supabase = await createClient();
@@ -45,7 +46,12 @@ export async function getProductsByCategory(categoryId: string) {
     return [];
   }
 
-  return products;
+const favoriteIds = await getFavoriteProductIds();
+
+  return products.map((product) => ({
+    ...product,
+    isFavorite: favoriteIds.has(product.id),
+  }));
 }
 
 export async function getAllCategories() {

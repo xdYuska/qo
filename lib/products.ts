@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getFavoriteProductIds } from "@/lib/favorites";
 
 export async function getAllProducts(filters?: {
   search?: string;
@@ -40,7 +41,12 @@ export async function getAllProducts(filters?: {
     return [];
   }
 
-  return data;
+  const favoriteIds = await getFavoriteProductIds();
+
+  return data.map((product) => ({
+    ...product,
+    isFavorite: favoriteIds.has(product.id),
+  }));
 }
 
 export async function getProductBySlug(slug: string) {

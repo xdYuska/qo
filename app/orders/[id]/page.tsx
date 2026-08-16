@@ -17,11 +17,16 @@ export default async function OrderConfirmationPage({
     <main className="max-w-2xl mx-auto px-4 py-12">
       <div className="border rounded-lg p-6">
         <h1 className="text-2xl font-semibold text-[#08a2c1]">
-          Order Placed Successfully
+          {order.status === "completed" && "Order Completed"}
+          {order.status === "cancelled" && "Order Cancelled"}
+          {order.status === "confirmed" && "Order Confirmed"}
+          {order.status === "pending" && "Order Placed Successfully"}
         </h1>
 
         <p className="mt-2 text-gray-600">
-          Thank you, {order.full_name}. Your order has been received.
+          {order.status === "cancelled"
+            ? `We're sorry, ${order.full_name} — this order has been cancelled.`
+            : `Thank you, ${order.full_name}. Your order has been received.`}
         </p>
 
         <div className="mt-4 text-sm text-gray-500">

@@ -178,3 +178,32 @@ export async function getCart() {
     items: itemsWithProducts,
   };
 }
+
+export async function getCartItemCount() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return 0;
+  }
+
+  const { data: cart } = await supabase
+    .from("carts")
+    .select("id")
+    .eq("user_id", user.id)
+    .single();
+
+  if (!cart) {
+    return 0;
+  }
+
+  const { data: items } = await supabase
+    .from("cart_items")
+    .select("quantity")
+    .eq("cart_id", cart.id);
+
+  return (items ?? []).reduce((sum, item) => sum + item.quantity, 0);
+}

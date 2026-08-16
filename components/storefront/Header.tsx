@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { logout } from "@/app/logout/actions";
+import { getCartItemCount } from "@/lib/cart";
 
 export default async function Header() {
   const supabase = await createClient();
@@ -9,6 +10,7 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   const isRealUser = user && !user.is_anonymous;
+  const cartCount = await getCartItemCount();
 
   return (
     <header className="border-b">
@@ -22,8 +24,13 @@ export default async function Header() {
             Products
           </Link>
 
-          <Link href="/cart" className="hover:underline">
+          <Link href="/cart" className="hover:underline relative">
             Cart
+            {cartCount > 0 && (
+              <span className="ml-1 inline-flex items-center justify-center bg-[#08a2c1] text-white text-xs rounded-full w-5 h-5">
+                {cartCount}
+              </span>
+            )}
           </Link>
 
           {isRealUser ? (

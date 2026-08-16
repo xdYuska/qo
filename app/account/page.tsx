@@ -1,12 +1,16 @@
 import { createClient } from "@/lib/supabase/server";
+import { getAddressesForCurrentUser } from "@/lib/addresses";
 import { redirect } from "next/navigation";
-import { logout } from "@/app/logout/actions";
 import Link from "next/link";
+import { logout } from "@/app/logout/actions";
+import ProfileForm from "./ProfileForm";
+import PasswordForm from "./PasswordForm";
+import AddressManager from "./AddressManager";
 
 export default async function AccountPage() {
   const supabase = await createClient();
 
-const {
+  const {
     data: { user },
   } = await supabase.auth.getUser();
 
@@ -20,39 +24,52 @@ const {
     .eq("id", user.id)
     .single();
 
-  return (
-    <main className="max-w-md mx-auto px-4 py-12">
-      <h1 className="text-2xl font-semibold mb-6">My Account</h1>
+  const addresses = await getAddressesForCurrentUser();
 
-      <div className="space-y-2 text-sm text-gray-700">
-        <p>
-          <span className="font-medium">Email:</span> {user.email}
-        </p>
-        <p>
-          <span className="font-medium">Name:</span>{" "}
-          {profile?.full_name ?? "Not set"}
-        </p>
-        <p>
-          <span className="font-medium">Role:</span> {profile?.role}
-        </p>
+  return (
+    <main className="max-w-2xl mx-auto px-4 py-12 space-y-8">
+      <div>
+        <h1 className="text-2xl font-semibold text-[#08a2c1] mb-1">
+          My Account
+        </h1>
+        <p className="text-sm text-gray-500">{user.email}</p>
       </div>
 
-      <form action={logout} className="mt-6">
-        <button
-          type="submit"
-          className="text-sm text-gray-600 hover:text-gray-900 underline"
+      <section>
+        <h2 className="text-lg font-semibold mb-3">Profile</h2>
+        <ProfileForm
+          initialFullName={profile?.full_name ?? ""}
+          initialPhone={profile?.phone ?? ""}
+        />
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold mb-3">Change Password</h2>
+        <PasswordForm />
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold mb-3">Saved Addresses</h2>
+        <AddressManager initialAddresses={addresses} />
+      </section>
+
+      <div className="border-t pt-6 space-y-2">
+        <Link
+          href="/account/orders"
+          className="block text-sm text-[#08a2c1] hover:underline"
         >
-          Log out
-        </button>
-      </form>
+          View Order History
+        </Link>
 
-      <Link
-        href="/account/orders"
-        className="block mt-6 text-sm text-[#08a2c1] hover:underline"
-      >
-        View Order History
-      </Link>
-
+        <form action={logout}>
+          <button
+            type="submit"
+            className="text-sm text-gray-600 hover:text-gray-900 underline"
+          >
+            Log out
+          </button>
+        </form>
+      </div>
     </main>
   );
 }

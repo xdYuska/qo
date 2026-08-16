@@ -37,3 +37,33 @@ export async function addToCartAction(formData: FormData) {
   revalidatePath("/cart");
   redirect(`/products/${slug}?success=true`);
 }
+
+export async function toggleFavorite(productId: string) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user || user.is_anonymous) {
+    throw new Error("Please log in to save favorites.");
+  }
+
+  const { data: existing } = await supabase
+    .from("favorites")
+    .select("id")
+    .eq("user_id", user.id)
+    .eq("product_id", productId)
+    .single();
+
+  if (existing) {
+    await supabase.from("favorites").delete().eq("id", existing.id);
+  } else {
+    await supabase.from("favorites").insert({
+      user_id: user.id,
+      product_id: productId,
+    });
+  }
+
+  revalidatePath("/favorites");
+}

@@ -3,6 +3,8 @@ import { getProductImageUrl } from "@/lib/supabase/images";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { addToCartAction } from "./actions";
+import FavoriteButton from "@/components/storefront/FavoriteButton";
+import { getFavoriteProductIds } from "@/lib/favorites";
 
 export default async function ProductPage({
   params,
@@ -14,6 +16,13 @@ export default async function ProductPage({
   const { slug } = await params;
   const { error, success } = await searchParams;
   const product = await getProductBySlug(slug);
+
+if (!product) {
+  notFound();
+}
+
+const favoriteIds = await getFavoriteProductIds();
+const isFavorite = favoriteIds.has(product.id);
 
   if (!product) {
     notFound();
@@ -35,6 +44,12 @@ export default async function ProductPage({
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
+          <div className="absolute top-2 right-2 z-10 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow">
+            <FavoriteButton
+              productId={product.id}
+              initialIsFavorite={isFavorite}
+            />
+          </div>
           {imageUrl ? (
             <Image
               src={imageUrl}
@@ -50,7 +65,7 @@ export default async function ProductPage({
         </div>
 
         <div>
-          <h1 className="text-2xl font-semibold text-[#08a2c1]">
+          <h1 className="text-2xl font-semibold text-gray-900">
             {product.name}
           </h1>
           <p className="text-xl text-gray-700 mt-2">{product.price} ₼</p>

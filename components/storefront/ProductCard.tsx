@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getProductImageUrl } from "@/lib/supabase/images";
+import FavoriteButton from "./FavoriteButton";
 
 type Product = {
   id: string;
@@ -8,6 +9,7 @@ type Product = {
   slug: string;
   price: number;
   image_path: string | null;
+  isFavorite?: boolean;
 };
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -19,6 +21,12 @@ export default function ProductCard({ product }: { product: Product }) {
       className="block border rounded-lg overflow-hidden hover:shadow-md transition-shadow"
     >
       <div className="relative aspect-square bg-gray-100">
+        <div className="absolute top-2 right-2 z-10 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow">
+          <FavoriteButton
+            productId={product.id}
+            initialIsFavorite={product.isFavorite ?? false}
+          />
+        </div>
         {imageUrl ? (
           <Image
             src={imageUrl}

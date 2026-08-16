@@ -3,22 +3,43 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { placeOrder } from "./actions";
-import AddressPicker from "@/components/storefront/AddressPicker";
+import dynamic from "next/dynamic";
+
+const AddressPicker = dynamic(
+  () => import("@/components/storefront/AddressPicker"),
+  { ssr: false }
+);
+
+type Address = {
+  id: string;
+  label: string;
+  address_text: string;
+  is_default: boolean;
+};
 
 type CheckoutFormProps = {
   initialFullName?: string;
   initialEmail?: string;
+  initialPhone?: string;
+  addresses?: Address[];
 };
 
 export default function CheckoutForm({
   initialFullName = "",
   initialEmail = "",
+  initialPhone = "",
+  addresses = [],
 }: CheckoutFormProps) {
   const router = useRouter();
+  const defaultAddress = addresses.find((a) => a.is_default) ?? addresses[0];
+
   const [fullName, setFullName] = useState(initialFullName);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(initialPhone);
   const [email, setEmail] = useState(initialEmail);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(defaultAddress?.address_text ?? "");
+  const [selectedAddressId, setSelectedAddressId] = useState(
+    defaultAddress ? defaultAddress.id : "new"
+  );
   const [paymentMethod, setPaymentMethod] = useState<"cash_on_delivery" | "online">("cash_on_delivery");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -143,21 +164,57 @@ export default function CheckoutForm({
           Delivery Address
         </label>
 
-        <AddressPicker onAddressChange={setAddress} disabled={isSubmitting} />
+        {addresses.length > 0 && (
+          <>
+            <select
+              value={selectedAddressId}
+              onChange={(event) => {
+                const value = event.target.value;
+                setSelectedAddressId(value);
 
-        <details className="mt-2">
-          <summary className="text-xs text-gray-500 cursor-pointer">
-            Can&apos;t find your address? Enter it manually
-          </summary>
-          <textarea
-            rows={3}
-            value={address}
-            onChange={(event) => setAddress(event.target.value)}
-            disabled={isSubmitting}
-            className="w-full border rounded-md px-3 py-2 mt-2 disabled:opacity-60"
-            placeholder="Type your delivery address"
-          />
-        </details>
+                if (value === "new") {
+                  setAddress("");
+                } else {
+                  const selected = addresses.find((a) => a.id === value);
+                  setAddress(selected?.address_text ?? "");
+                }
+              }}
+              disabled={isSubmitting}
+              className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
+            >
+              {addresses.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.label} {a.is_default ? "(Default)" : ""}
+                </option>
+              ))}
+              <option value="new">Enter a new address</option>
+            </select>
+
+            {selectedAddressId !== "new" && (
+              <p className="text-sm text-gray-500 mt-1">{address}</p>
+            )}
+          </>
+        )}
+
+        {selectedAddressId === "new" && (
+          <>
+            <AddressPicker onAddressChange={setAddress} disabled={isSubmitting} />
+
+            <details className="mt-2">
+              <summary className="text-xs text-gray-500 cursor-pointer">
+                Can&apos;t find your address? Enter it manually
+              </summary>
+              <textarea
+                rows={3}
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
+                disabled={isSubmitting}
+                className="w-full border rounded-md px-3 py-2 mt-2 disabled:opacity-60"
+                placeholder="Type your delivery address"
+              />
+            </details>
+          </>
+        )}
       </div>
 
       {errorMessage && (

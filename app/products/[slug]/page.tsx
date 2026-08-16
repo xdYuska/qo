@@ -31,7 +31,8 @@ const isFavorite = favoriteIds.has(product.id);
   const imageUrl = getProductImageUrl(product.image_path);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8">
+    <main className="shop-wallpaper min-h-screen">
+    <div className="max-w-4xl mx-auto px-4 py-8">
       {error && (
         <p className="text-red-600 text-sm mb-4 bg-red-50 border border-red-200 rounded-md p-3">
           {error}
@@ -102,6 +103,7 @@ const isFavorite = favoriteIds.has(product.id);
           )}
         </div>
       </div>
+    </div>
     </main>
   );
 }

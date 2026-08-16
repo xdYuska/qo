@@ -5,7 +5,8 @@ export default async function CategoriesPage() {
   const categories = await getAllCategories();
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="shop-wallpaper min-h-screen">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-semibold mb-6">Categories</h1>
 
       {categories.length === 0 ? (
@@ -25,6 +26,7 @@ export default async function CategoriesPage() {
           ))}
         </div>
       )}
+    </div>
     </main>
   );
 }

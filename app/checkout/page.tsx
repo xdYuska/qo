@@ -48,7 +48,8 @@ export default async function CheckoutPage() {
   }, 0);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="shop-wallpaper min-h-screen">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-semibold text-brand mb-8">
         Checkout
       </h1>
@@ -100,6 +101,7 @@ export default async function CheckoutPage() {
           </div>
         </section>
       </div>
+    </div>
     </main>
   );
 }

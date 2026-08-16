@@ -16,7 +16,8 @@ export default async function ShopPage({
   ]);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="shop-wallpaper min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between gap-4 mb-6">
   <h1 className="text-2xl font-semibold">All Products</h1>
   <Link
@@ -37,6 +38,7 @@ export default async function ShopPage({
           ))}
         </div>
       )}
+      </div>
     </main>
   );
 }

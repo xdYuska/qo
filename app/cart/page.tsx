@@ -25,7 +25,8 @@ export default async function CartPage() {
   }, 0);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="shop-wallpaper min-h-screen">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-semibold text-brand mb-6">
         Your Cart
       </h1>
@@ -52,6 +53,7 @@ export default async function CartPage() {
 </div>
         </div>
       </div>
+    </div>
     </main>
   );
 }

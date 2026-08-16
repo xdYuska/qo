@@ -17,7 +17,8 @@ export default async function CategoryPage({
   const products = await getProductsByCategory(category.id);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="shop-wallpaper min-h-screen">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-semibold mb-6">{category.name}</h1>
 
       {products.length === 0 ? (
@@ -29,6 +30,7 @@ export default async function CategoryPage({
           ))}
         </div>
       )}
+    </div>
     </main>
   );
 }

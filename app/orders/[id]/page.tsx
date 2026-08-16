@@ -14,7 +14,8 @@ export default async function OrderConfirmationPage({
   }
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-12">
+    <main className="shop-wallpaper min-h-screen">
+    <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="border rounded-lg p-6">
         <h1 className="text-2xl font-semibold text-brand">
           {order.status === "completed" && "Order Completed"}
@@ -60,6 +61,7 @@ export default async function OrderConfirmationPage({
           <p>Contact: {order.phone} · {order.email}</p>
         </div>
       </div>
+    </div>
     </main>
   );
 }

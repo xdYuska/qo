@@ -2,6 +2,7 @@ import { getAllProducts } from "@/lib/products";
 import { getAllCategories } from "@/lib/categories";
 import ProductCard from "@/components/storefront/ProductCard";
 import SearchFilterForm from "@/components/storefront/SearchFilterForm";
+import Link from "next/link";
 
 export default async function ShopPage({
   searchParams,
@@ -16,7 +17,14 @@ export default async function ShopPage({
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-6">All Products</h1>
+      <div className="flex items-center justify-between gap-4 mb-6">
+  <h1 className="text-2xl font-semibold">All Products</h1>
+  <Link
+    href="/categories"
+    className="shrink-0 text-sm font-medium text-[#08a2c1] border border-[#08a2c1] rounded-lg px-3 py-2 hover:bg-[#08a2c1]/10 transition">
+    Browse Categories
+  </Link>
+</div>
 
       <SearchFilterForm categories={categories} />
 

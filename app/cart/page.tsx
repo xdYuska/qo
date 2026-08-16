@@ -7,7 +7,7 @@ export default async function CartPage() {
   if (!cart || cart.items.length === 0) {
     return (
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+        <h1 className="text-2xl font-semibold text-brand mb-6">
           Your Cart
         </h1>
 
@@ -26,7 +26,7 @@ export default async function CartPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+      <h1 className="text-2xl font-semibold text-brand mb-6">
         Your Cart
       </h1>
 
@@ -38,7 +38,7 @@ export default async function CartPage() {
 
       <div className="mt-8 border-t pt-6 flex justify-end">
         <div className="text-right">
-          <p className="text-lg font-medium text-[#08a2c1]">
+          <p className="text-lg font-medium text-brand">
             Subtotal: {subtotal.toFixed(2)} ₼
           </p>
 

@@ -16,7 +16,7 @@ export default async function AdminOrderDetailPage({
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+      <h1 className="text-2xl font-semibold text-brand mb-6">
         Order #{order.id.slice(0, 8)}
       </h1>
 
@@ -45,7 +45,7 @@ export default async function AdminOrderDetailPage({
 
         <div className="border-t pt-4 flex justify-between font-semibold">
           <span>Total</span>
-          <span className="text-[#08a2c1]">{Number(order.total).toFixed(2)} ₼</span>
+          <span className="text-brand">{Number(order.total).toFixed(2)} ₼</span>
         </div>
       </div>
     </div>

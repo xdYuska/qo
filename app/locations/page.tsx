@@ -131,7 +131,7 @@ export default function LocationsPage() {
             </div>
 
             <div className="p-4 flex flex-col gap-1">
-              <h2 className="font-semibold text-[#08a2c1]">
+              <h2 className="font-semibold text-brand">
                 Qediroglu {store.name}
               </h2>
               <p className="text-sm text-black/70 dark:text-white/70">
@@ -147,7 +147,7 @@ export default function LocationsPage() {
                 href={store.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 text-sm font-medium text-[#08a2c1] hover:underline"
+                className="mt-2 text-sm font-medium text-brand hover:underline"
               >
                 Get Directions →
               </a>

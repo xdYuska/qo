@@ -18,7 +18,7 @@ export default async function CategoriesPage() {
               href={`/categories/${category.slug}`}
               className="flex items-center justify-center text-center min-h-28 p-4 border rounded-lg bg-[#08a2c1]/5 hover:bg-[#08a2c1]/10 hover:shadow-md active:scale-[0.98] transition"
             >
-              <span className="text-sm font-medium text-[#08a2c1]">
+              <span className="text-sm font-medium text-brand">
                 {category.name}
               </span>
             </Link>

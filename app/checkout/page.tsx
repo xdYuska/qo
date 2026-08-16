@@ -34,7 +34,7 @@ export default async function CheckoutPage() {
   if (!cart || cart.items.length === 0) {
     return (
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+        <h1 className="text-2xl font-semibold text-brand mb-6">
           Checkout
         </h1>
         <p className="text-gray-500">Your cart is empty.</p>
@@ -49,13 +49,13 @@ export default async function CheckoutPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold text-[#08a2c1] mb-8">
+      <h1 className="text-2xl font-semibold text-brand mb-8">
         Checkout
       </h1>
 
       <div className="grid gap-8 md:grid-cols-2">
         <section>
-          <h2 className="text-xl font-semibold text-[#08a2c1] mb-4">
+          <h2 className="text-xl font-semibold text-brand mb-4">
             Delivery Information
           </h2>
 
@@ -68,7 +68,7 @@ export default async function CheckoutPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[#08a2c1] mb-4">
+          <h2 className="text-xl font-semibold text-brand mb-4">
             Order Summary
           </h2>
 
@@ -93,7 +93,7 @@ export default async function CheckoutPage() {
 
             <div className="border-t pt-4 flex justify-between">
               <p className="font-semibold">Subtotal</p>
-              <p className="font-semibold text-[#08a2c1]">
+              <p className="font-semibold text-brand">
                 {subtotal.toFixed(2)} ₼
               </p>
             </div>

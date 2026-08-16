@@ -17,7 +17,7 @@ export default async function OrderHistoryPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+      <h1 className="text-2xl font-semibold text-brand mb-6">
         Order History
       </h1>
 
@@ -42,7 +42,7 @@ export default async function OrderHistoryPage() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-[#08a2c1]">
+                  <p className="font-semibold text-brand">
                     {Number(order.total).toFixed(2)} ₼
                   </p>
                   <p className="text-sm text-gray-500 capitalize">

@@ -82,13 +82,13 @@ export default function AddressManager({
             <p className="font-medium">
               {address.label}
               {address.is_default && (
-                <span className="ml-2 text-xs text-[#08a2c1]">(Default)</span>
+                <span className="ml-2 text-xs text-brand">(Default)</span>
               )}
             </p>
             <p className="text-sm text-gray-600">{address.address_text}</p>
           </div>
           <div className="flex gap-3 text-sm">
-            <button onClick={() => startEdit(address)} className="text-[#08a2c1] hover:underline">
+            <button onClick={() => startEdit(address)} className="text-brand hover:underline">
               Edit
             </button>
             <button onClick={() => handleDelete(address.id)} className="text-red-600 hover:underline">
@@ -159,7 +159,7 @@ export default function AddressManager({
       ) : (
         <button
           onClick={() => setIsAdding(true)}
-          className="text-sm text-[#08a2c1] hover:underline"
+          className="text-sm text-brand hover:underline"
         >
           + Add Address
         </button>

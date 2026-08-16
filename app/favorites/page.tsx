@@ -17,7 +17,7 @@ export default async function FavoritesPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+      <h1 className="text-2xl font-semibold text-brand mb-6">
         My Favorites
       </h1>
 

@@ -31,7 +31,7 @@ export default async function AdminLayout({
     <div className="min-h-screen bg-gray-50">
       <div className="border-b bg-white">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-6">
-          <Link href="/admin" className="font-semibold text-[#08a2c1]">
+          <Link href="/admin" className="font-semibold text-brand">
             Admin
           </Link>
           <Link href="/admin/orders" className="text-sm hover:underline">

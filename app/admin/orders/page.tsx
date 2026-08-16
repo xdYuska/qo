@@ -6,7 +6,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-[#08a2c1] mb-6">
+      <h1 className="text-2xl font-semibold text-brand mb-6">
         Orders
       </h1>
 
@@ -31,7 +31,7 @@ export default async function AdminOrdersPage() {
                   <td className="px-4 py-2">
                     <Link
                       href={`/admin/orders/${order.id}`}
-                      className="text-[#08a2c1] hover:underline"
+                      className="text-brand hover:underline"
                     >
                       #{order.id.slice(0, 8)}
                     </Link>

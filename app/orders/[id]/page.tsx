@@ -16,7 +16,7 @@ export default async function OrderConfirmationPage({
   return (
     <main className="max-w-2xl mx-auto px-4 py-12">
       <div className="border rounded-lg p-6">
-        <h1 className="text-2xl font-semibold text-[#08a2c1]">
+        <h1 className="text-2xl font-semibold text-brand">
           {order.status === "completed" && "Order Completed"}
           {order.status === "cancelled" && "Order Cancelled"}
           {order.status === "confirmed" && "Order Confirmed"}
@@ -50,7 +50,7 @@ export default async function OrderConfirmationPage({
 
         <div className="mt-4 border-t pt-4 flex justify-between font-semibold">
           <span>Total</span>
-          <span className="text-[#08a2c1]">
+          <span className="text-brand">
             {Number(order.total).toFixed(2)} ₼
           </span>
         </div>

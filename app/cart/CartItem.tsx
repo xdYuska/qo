@@ -115,7 +115,7 @@ export default function CartItem({ item }: CartItemProps) {
       </div>
 
       <div className="flex-1">
-        <h2 className="text-lg font-medium text-[#08a2c1]">
+        <h2 className="text-lg font-medium text-brand">
           {product.name}
         </h2>
 
@@ -147,7 +147,7 @@ export default function CartItem({ item }: CartItemProps) {
           </button>
         </div>
 
-        <p className="text-[#08a2c1] font-medium mt-2">
+        <p className="text-brand font-medium mt-2">
           Total: {(Number(product.price) * quantity).toFixed(2)} ₼
         </p>
 

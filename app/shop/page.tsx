@@ -21,7 +21,7 @@ export default async function ShopPage({
   <h1 className="text-2xl font-semibold">All Products</h1>
   <Link
     href="/categories"
-    className="shrink-0 text-sm font-medium text-[#08a2c1] border border-[#08a2c1] rounded-lg px-3 py-2 hover:bg-[#08a2c1]/10 transition">
+    className="shrink-0 text-sm font-medium text-brand border border-[#08a2c1] rounded-lg px-3 py-2 hover:bg-[#08a2c1]/10 transition">
     Browse Categories
   </Link>
 </div>

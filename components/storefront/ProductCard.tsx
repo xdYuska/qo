@@ -40,8 +40,8 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         )}
       </div>
-      <div className="p-3">
-        <h3 className="text-sm font-medium text-brand line-clamp-2 h-10">
+      <div className="p-3 bg-white">
+        <h3 className="text-lg font-medium text-brand line-clamp-2 h-10">
           {product.name}
         </h3>
         <p className="text-sm text-gray-600 mt-1">{product.price} ₼</p>

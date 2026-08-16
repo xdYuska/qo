@@ -143,8 +143,8 @@ function NavLinks({
 }) {
   return (
     <>
-      <Link href="/" className={linkClass} onClick={onNavigate}>
-        Products
+      <Link href="/shop" className={linkClass} onClick={onNavigate}>
+        Shop
       </Link>
 
       <Link href="/cart" className={`${linkClass} relative`} onClick={onNavigate}>

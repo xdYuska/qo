@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto border-t">
-      <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8 sm:grid sm:grid-cols-4 sm:py-10">
+      <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8 sm:grid sm:grid-cols-5 sm:py-10">
         <div>
           <Link href="/" className="text-lg font-semibold text-[#08a2c1]">
             Qediroglu
@@ -18,8 +18,8 @@ export default function Footer() {
         <div>
           <h3 className="text-sm font-semibold">Shop</h3>
           <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
-            <Link href="/" className="py-2 hover:underline">
-              Products
+            <Link href="/shop" className="py-2 hover:underline">
+              Shop
             </Link>
             <Link href="/categories" className="py-2 hover:underline">
               Categories
@@ -52,10 +52,25 @@ export default function Footer() {
         </div>
 
         <div>
+          <h3 className="text-sm font-semibold">About</h3>
+          <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
+            <Link href="/about#company" className="py-2 hover:underline">
+              Company
+            </Link>
+            <Link href="/about#distribution" className="py-2 hover:underline">
+              Distribution
+            </Link>
+            <Link href="/about#imports" className="py-2 hover:underline">
+              Imports
+            </Link>
+          </nav>
+        </div>
+
+        <div>
           <h3 className="text-sm font-semibold">Contact</h3>
           <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
-            <a href="mailto:ofis@qediroglu.az" className="py-2 hover:underline">
-              ofis@qediroglu.az
+            <a href="mailto:hello@qediroglu.com" className="py-2 hover:underline">
+              hello@qediroglu.com
             </a>
           </nav>
         </div>
@@ -63,7 +78,7 @@ export default function Footer() {
 
       <div className="border-t">
         <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-black/50 dark:text-white/50">
-          © {year} Qediroglu. All rights reserved.
+          © {year} Qediroglu Supermarket. All rights reserved.
         </div>
       </div>
     </footer>

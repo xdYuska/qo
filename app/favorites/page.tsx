@@ -27,12 +27,17 @@ export default async function FavoritesPage() {
         </p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={{ ...product, isFavorite: true }}
-            />
-          ))}
+         {products.map((product) => (
+  <ProductCard
+    key={product.id}
+    product={{ 
+      ...product, 
+      isFavorite: true,
+      description: "" // 👈 Hardcode an empty string directly here
+    }}
+  />
+))}
+
         </div>
       )}
     </main>

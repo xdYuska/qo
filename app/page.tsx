@@ -7,7 +7,7 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-14 sm:py-20 text-center">
         <h1 className="text-3xl sm:text-4xl font-semibold text-[#08a2c1]">
-          Qediroglu Supermarket
+          Qediroglu MMC
         </h1>
         <p className="mt-4 text-base sm:text-lg text-black/70 dark:text-white/70 max-w-xl mx-auto">
           Fresh groceries, trusted distribution, and imports from around the
@@ -27,7 +27,7 @@ export default function Home() {
          <SmoothScrollLink 
             href="#company"
             className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition">
-            <h2 className="font-semibold text-[#08a2c1]">Company</h2>
+            <h2 className="font-semibold text-[#08a2c1]">COMPANY</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               Who we are and what we stand for.
             </p>
@@ -37,7 +37,7 @@ export default function Home() {
             href="#distribution"
             className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
           >
-            <h2 className="font-semibold text-[#08a2c1]">Distribution</h2>
+            <h2 className="font-semibold text-[#08a2c1]">DISTRIBUTION</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               How we get products from source to shelf.
             </p>
@@ -47,7 +47,7 @@ export default function Home() {
             href="#imports"
             className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
           >
-            <h2 className="font-semibold text-[#08a2c1]">Imports</h2>
+            <h2 className="font-semibold text-[#08a2c1]">IMPORTS</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               The countries and partners we source from.
             </p>

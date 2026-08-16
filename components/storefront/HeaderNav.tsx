@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/app/logout/actions";
+import LanguageSelector from "./LanguageSelector";
 
 export default function HeaderNav({
   isRealUser,
@@ -42,6 +43,7 @@ export default function HeaderNav({
           linkClass="hover:underline"
           onNavigate={() => {}}
         />
+        <LanguageSelector />
       </nav>
 
       {/* Mobile hamburger button */}
@@ -116,6 +118,10 @@ export default function HeaderNav({
             </svg>
           </button>
         </div>
+
+        <div className="px-4 py-3 border-b border-black/10 dark:border-white/10">
+  <LanguageSelector className="w-full" />
+</div>
 
         <nav className="flex flex-col p-4 text-base">
           <NavLinks

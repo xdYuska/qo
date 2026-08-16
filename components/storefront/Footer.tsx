@@ -69,8 +69,8 @@ export default function Footer() {
         <div>
           <h3 className="text-sm font-semibold">Contact</h3>
           <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
-            <a href="mailto:hello@qediroglu.com" className="py-2 hover:underline">
-              hello@qediroglu.com
+            <a href="mailto:ofis@qediroglu.az" className="py-2 hover:underline">
+              ofis@qediroglu.az
             </a>
           </nav>
         </div>
@@ -78,7 +78,7 @@ export default function Footer() {
 
       <div className="border-t">
         <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-black/50 dark:text-white/50">
-          © {year} Qediroglu Supermarket. All rights reserved.
+          © {year} Qediroglu. All rights reserved.
         </div>
       </div>
     </footer>

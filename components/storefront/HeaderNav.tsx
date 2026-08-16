@@ -77,7 +77,7 @@ export default function HeaderNav({
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          className="fixed inset-0 bg-black/40 dark:bg-black/60 z-40 md:hidden"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
         />
@@ -89,11 +89,11 @@ export default function HeaderNav({
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[80%] bg-white shadow-lg md:hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[80%] bg-[var(--background)] text-[var(--foreground)] border-l border-black/10 dark:border-white/10 shadow-lg md:hidden transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-4 py-4 border-b">
+        <div className="flex items-center justify-between px-4 py-4 border-b border-black/10 dark:border-white/10">
           <span className="font-semibold text-[#08a2c1]">Menu</span>
           <button
             type="button"
@@ -121,7 +121,7 @@ export default function HeaderNav({
           <NavLinks
             isRealUser={isRealUser}
             cartCount={cartCount}
-            linkClass="py-3 border-b"
+            linkClass="py-3 border-b border-black/10 dark:border-white/10"
             onNavigate={() => setIsOpen(false)}
           />
         </nav>

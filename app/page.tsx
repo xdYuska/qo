@@ -27,7 +27,7 @@ export default function Home() {
          <SmoothScrollLink 
             href="#company"
             className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition">
-            <h2 className="font-semibold text-[#08a2c1]">COMPANY</h2>
+            <h2 className="font-semibold text-[#08a2c1]">ABOUT US</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               Who we are and what we stand for.
             </p>
@@ -83,7 +83,7 @@ export default function Home() {
       >
         <div className="max-w-3xl mx-auto px-4 py-16">
           <h2 className="text-2xl sm:text-3xl font-semibold text-[#08a2c1]">
-            Company
+            About Us
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
             Qediroglu Supermarket brings fresh groceries and everyday

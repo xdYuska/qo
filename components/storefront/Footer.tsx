@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { getLogoUrl } from "@/lib/supabase/images";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -7,13 +9,22 @@ export default function Footer() {
     <footer className="mt-auto border-t">
       <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8 sm:grid sm:grid-cols-5 sm:py-10">
         <div>
-          <Link href="/" className="text-lg font-semibold text-[#08a2c1]">
-            Qediroglu
-          </Link>
-          <p className="mt-2 text-sm text-black/60 dark:text-white/60">
-            Fresh groceries, delivered.
-          </p>
-        </div>
+  <Link href="/" className="flex flex-col items-start gap-1">
+    <Image
+      src={getLogoUrl()}
+      alt="Qediroglu"
+      width={160}
+      height={40}
+      className="h-20 w-auto"
+    />
+    <span className="text-lg font-semibold text-[#08a2c1]">
+      Qediroglu
+    </span>
+  </Link>
+  <p className="mt-2 text-sm text-black/60 dark:text-white/60">
+    Fresh groceries, delivered.
+  </p>
+</div>
 
         <div>
           <h3 className="text-sm font-semibold">Shop</h3>
@@ -77,9 +88,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t">
-        <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-black/50 dark:text-white/50">
-          © {year} Qediroglu. All rights reserved.
-        </div>
+        <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-black/50 dark:text-white/50 text-center">
+  © {year} Qediroglu Supermarket. All rights reserved.
+</div>
       </div>
     </footer>
   );

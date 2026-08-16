@@ -35,7 +35,7 @@ export default function SmoothScrollLink({
     const startY = window.scrollY;
     const endY = target.getBoundingClientRect().top + startY - 80;
     const distance = endY - startY;
-    const duration = 1200; // ms — increase for slower, decrease for faster
+    const duration = 800; // ms — increase for slower, decrease for faster
     let startTime: number | null = null;
 
     // Any of these means the user is taking control — stop immediately.

@@ -27,7 +27,7 @@ export default function SearchFilterForm({
     if (search) params.set("search", search);
     if (category) params.set("category", category);
 
-    router.push(`/?${params.toString()}`);
+    router.push(`/shop?${params.toString()}`);
   }
 
   return (

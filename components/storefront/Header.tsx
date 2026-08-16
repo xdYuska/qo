@@ -34,10 +34,15 @@ export default async function Header() {
           </Link>
 
           {isRealUser ? (
-            <>
+            <>     
+              <Link href="/favorites" className="hover:underline">
+                Favorites
+              </Link>
+
               <Link href="/account" className="hover:underline">
                 My Account
               </Link>
+
               <form action={logout}>
                 <button type="submit" className="hover:underline">
                   Log out

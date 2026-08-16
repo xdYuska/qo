@@ -12,14 +12,14 @@ export default async function CategoriesPage() {
       {categories.length === 0 ? (
         <p className="text-gray-500">No categories yet.</p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {categories.map((category) => (
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
-              className="flex items-center justify-center text-center min-h-28 p-4 border rounded-lg bg-[#08a2c1]/5 hover:bg-[#08a2c1]/10 hover:shadow-md active:scale-[0.98] transition"
+              className="flex items-center justify-center text-center min-h-20 p-4 border rounded-3xl bg-[#08a2c1]/5 hover:bg-[#08a2c1]/10 hover:shadow-md active:scale-[0.98] transition"
             >
-              <span className="text-sm font-medium text-brand">
+              <span className="text-xl font-medium text-brand">
                 {category.name}
               </span>
             </Link>

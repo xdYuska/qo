@@ -5,8 +5,8 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto border-t">
-      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
-        <div className="col-span-2 sm:col-span-1">
+      <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8 sm:grid sm:grid-cols-4 sm:py-10">
+        <div>
           <Link href="/" className="text-lg font-semibold text-[#08a2c1]">
             Qediroglu
           </Link>
@@ -17,17 +17,17 @@ export default function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold">Shop</h3>
-          <nav className="mt-3 flex flex-col gap-2 text-sm text-black/70 dark:text-white/70">
-            <Link href="/" className="hover:underline">
+          <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
+            <Link href="/" className="py-2 hover:underline">
               Products
             </Link>
-            <Link href="/categories" className="hover:underline">
+            <Link href="/categories" className="py-2 hover:underline">
               Categories
             </Link>
-            <Link href="/cart" className="hover:underline">
+            <Link href="/cart" className="py-2 hover:underline">
               Cart
             </Link>
-            <Link href="/favorites" className="hover:underline">
+            <Link href="/favorites" className="py-2 hover:underline">
               Favorites
             </Link>
           </nav>
@@ -35,17 +35,17 @@ export default function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold">Account</h3>
-          <nav className="mt-3 flex flex-col gap-2 text-sm text-black/70 dark:text-white/70">
-            <Link href="/account" className="hover:underline">
+          <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
+            <Link href="/account" className="py-2 hover:underline">
               My Account
             </Link>
-            <Link href="/orders" className="hover:underline">
+            <Link href="/orders" className="py-2 hover:underline">
               Orders
             </Link>
-            <Link href="/login" className="hover:underline">
+            <Link href="/login" className="py-2 hover:underline">
               Log in
             </Link>
-            <Link href="/signup" className="hover:underline">
+            <Link href="/signup" className="py-2 hover:underline">
               Sign up
             </Link>
           </nav>
@@ -53,8 +53,8 @@ export default function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold">Contact</h3>
-          <nav className="mt-3 flex flex-col gap-2 text-sm text-black/70 dark:text-white/70">
-            <a href="mailto:hello@qediroglu.com" className="hover:underline">
+          <nav className="mt-3 flex flex-col text-sm text-black/70 dark:text-white/70">
+            <a href="mailto:ofis@qediroglu.az" className="py-2 hover:underline">
               ofis@qediroglu.az
             </a>
           </nav>

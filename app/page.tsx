@@ -55,6 +55,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Locations banner */}
+<section className="max-w-6xl mx-auto px-4 pb-14 sm:pb-20">
+  <Link
+    href="/locations"
+    className="flex flex-col sm:flex-row items-center justify-between gap-4 p-8 rounded-lg bg-[#08a2c1] text-white hover:bg-[#0791ac] active:scale-[0.99] transition"
+  >
+    <div className="text-center sm:text-left">
+      <h2 className="text-xl sm:text-2xl font-semibold">
+        Find a Store Near You
+      </h2>
+      <p className="mt-1 text-sm text-white/80">
+        12 locations across the region — hours, directions, and contact
+        info.
+      </p>
+    </div>
+    <span className="shrink-0 text-sm font-medium bg-white text-[#08a2c1] rounded-lg px-5 py-3">
+      View Locations →
+    </span>
+  </Link>
+</section>
+
       {/* Company */}
       <section
         id="company"

@@ -17,8 +17,6 @@ export async function login(formData: FormData) {
     data: { user: previousUser },
   } = await supabase.auth.getUser();
 
-    console.log("LOGIN DEBUG — previous anon user id:", previousUser?.id);
-
   const wasAnonymous = previousUser?.is_anonymous === true;
   let anonCartId: string | null = null;
   let anonItems: { product_id: string; quantity: number }[] = [];
@@ -59,7 +57,7 @@ export async function login(formData: FormData) {
   if (wasAnonymous && previousUser) {
     const serviceClient = createServiceClient();
 
-  if (anonCartId) {
+    if (anonCartId) {
       const { error: cartDeleteError } = await serviceClient
         .from("carts")
         .delete()
@@ -70,15 +68,13 @@ export async function login(formData: FormData) {
       }
     }
 
-        const { error: deleteUserError } =
+    const { error: deleteUserError } =
       await serviceClient.auth.admin.deleteUser(previousUser.id);
 
     if (deleteUserError) {
       console.error("Error deleting anon user:", deleteUserError.message);
-    } else {
-      console.log("LOGIN DEBUG — successfully deleted:", previousUser.id);
     }
-    }
+  }
 
   redirect("/account");
 }

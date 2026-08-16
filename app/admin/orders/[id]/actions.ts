@@ -20,14 +20,29 @@ export async function updateOrderStatus(orderId: string, status: string) {
     throw new Error("You must be logged in.");
   }
 
-  const { error } = await supabase
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  if (profile?.role !== "admin") {
+    throw new Error("You are not authorized to update orders.");
+  }
+
+  const { data, error } = await supabase
     .from("orders")
     .update({ status })
-    .eq("id", orderId);
+    .eq("id", orderId)
+    .select("id");
 
   if (error) {
     console.error("Error updating order status:", error.message);
     throw new Error("Could not update order status.");
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error("Order not found or you don't have permission to update it.");
   }
 
   revalidatePath(`/admin/orders/${orderId}`);

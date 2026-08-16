@@ -128,18 +128,32 @@ export async function updateAddress(
 
   const supabase = await createClient();
 
-  const { error } = await supabase
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user || user.is_anonymous) {
+    throw new Error("You must be logged in.");
+  }
+
+  const { data, error } = await supabase
     .from("addresses")
     .update({
       label: trimmedLabel,
       address_text: trimmedAddress,
       is_default: isDefault,
     })
-    .eq("id", addressId);
+    .eq("id", addressId)
+    .eq("user_id", user.id)
+    .select("id");
 
   if (error) {
     console.error("Error updating address:", error.message);
     throw new Error("Could not update address.");
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error("Address not found.");
   }
 
   revalidatePath("/account");
@@ -148,14 +162,28 @@ export async function updateAddress(
 export async function deleteAddress(addressId: string) {
   const supabase = await createClient();
 
-  const { error } = await supabase
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user || user.is_anonymous) {
+    throw new Error("You must be logged in.");
+  }
+
+  const { data, error } = await supabase
     .from("addresses")
     .delete()
-    .eq("id", addressId);
+    .eq("id", addressId)
+    .eq("user_id", user.id)
+    .select("id");
 
   if (error) {
     console.error("Error deleting address:", error.message);
     throw new Error("Could not delete address.");
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error("Address not found.");
   }
 
   revalidatePath("/account");

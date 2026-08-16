@@ -1,6 +1,11 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+// NOTE: This middleware only refreshes the Supabase session cookie on every
+// request — it does NOT gate access to any route. Each protected page/layout
+// (e.g. app/admin/layout.tsx) and each server action performs its own
+// supabase.auth.getUser() + role check. If you add a new protected route,
+// you must add its own auth check; this middleware will not do it for you.
 export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
 
@@ -25,10 +30,10 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  // Calling getUser() (rather than just reading the cookie) forces a token
+  // refresh when needed; the setAll callback above writes the refreshed
+  // cookie onto supabaseResponse as a side effect. We don't need the value.
+  await supabase.auth.getUser();
 
   return supabaseResponse;
 }

@@ -26,7 +26,7 @@ export default async function Header() {
             className="h-10 w-auto sm:h-20"
             priority
           />
-          <span className="text-lg font-semibold text-[#08a2c1]">
+          <span className="text-xl font-semibold text-[#08a2c1]">
             Qediroglu
           </span>
         </Link>

@@ -4,13 +4,22 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/app/logout/actions";
 import LanguageSelector from "./LanguageSelector";
+import CartPreview from "./CartPreview";
 
 export default function HeaderNav({
   isRealUser,
   cartCount,
+  cartItems,
 }: {
   isRealUser: boolean;
   cartCount: number;
+  cartItems: {
+    id: string;
+    name: string;
+    price: number;
+    image_path: string | null;
+    quantity: number;
+  }[];
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,14 +46,16 @@ export default function HeaderNav({
     <>
       {/* Desktop nav */}
       <nav className="hidden md:flex items-center gap-4 text-sm">
-        <NavLinks
-          isRealUser={isRealUser}
-          cartCount={cartCount}
-          linkClass="hover:underline"
-          onNavigate={() => {}}
-        />
-        <LanguageSelector />
-      </nav>
+  <NavLinks
+    isRealUser={isRealUser}
+    cartCount={cartCount}
+    cartItems={cartItems}
+    linkClass="hover:underline"
+    onNavigate={() => {}}
+    showCartPreview
+  />
+  <LanguageSelector />
+</nav>
 
       {/* Mobile hamburger button */}
       <button
@@ -139,13 +150,23 @@ export default function HeaderNav({
 function NavLinks({
   isRealUser,
   cartCount,
+  cartItems = [],
   linkClass,
   onNavigate,
+  showCartPreview = false,
 }: {
   isRealUser: boolean;
   cartCount: number;
+  cartItems?: {
+    id: string;
+    name: string;
+    price: number;
+    image_path: string | null;
+    quantity: number;
+  }[];
   linkClass: string;
   onNavigate: () => void;
+  showCartPreview?: boolean;
 }) {
   return (
     <>
@@ -153,14 +174,25 @@ function NavLinks({
         Shop
       </Link>
 
-      <Link href="/cart" className={`${linkClass} relative`} onClick={onNavigate}>
-        Cart
-        {cartCount > 0 && (
-          <span className="ml-1 inline-flex items-center justify-center bg-citrus text-white text-xs rounded-full w-5 h-5">
-            {cartCount}
-          </span>
-        )}
-      </Link>
+      {showCartPreview ? (
+        <CartPreview
+          items={cartItems}
+          cartCount={cartCount}
+          linkClass={`${linkClass} relative`}
+          onNavigate={onNavigate}
+        />
+      ) : (
+        <Link href="/cart" className={`${linkClass} relative`} onClick={onNavigate}>
+          Cart
+          {cartCount > 0 && (
+            <span className="ml-1 inline-flex items-center justify-center bg-citrus text-white text-xs rounded-full w-5 h-5">
+              {cartCount}
+            </span>
+          )}
+        </Link>
+      )}
+
+      {/* rest of the function (Favorites, Account, Log out / Log in, Sign up) stays exactly the same */}
 
       {isRealUser ? (
         <>

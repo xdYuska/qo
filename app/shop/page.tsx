@@ -19,7 +19,7 @@ export default async function ShopPage({
     <main className="shop-wallpaper min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between gap-4 mb-6">
-  <h1 className="text-2xl font-semibold">All Products</h1>
+  <h1 className="text-2xl font-bold">All Products</h1>
   <Link
     href="/categories"
     className="shrink-0 text-sm font-medium text-brand border border-[#08a2c1] rounded-lg px-3 py-2 hover:bg-[#08a2c1]/10 transition">

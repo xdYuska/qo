@@ -6,7 +6,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-14 sm:py-20 text-center">
-        <h1 className="text-3xl sm:text-4xl font-semibold text-brand">
+        <h1 className="text-3xl sm:text-4xl font-bold text-brand">
           Qediroglu MMC
         </h1>
         <p className="mt-4 text-base sm:text-lg text-black/70 dark:text-white/70 max-w-xl mx-auto">
@@ -82,7 +82,7 @@ export default function Home() {
         className="scroll-mt-20 border-t bg-black/[0.02] dark:bg-white/[0.03]"
       >
         <div className="max-w-3xl mx-auto px-4 py-16">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-brand">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand">
             About Us
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
@@ -97,7 +97,7 @@ export default function Home() {
       {/* Distribution */}
       <section id="distribution" className="scroll-mt-20 border-t">
         <div className="max-w-3xl mx-auto px-4 py-16">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-brand">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand">
             Distribution
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
@@ -114,7 +114,7 @@ export default function Home() {
         className="scroll-mt-20 border-t bg-black/[0.02] dark:bg-white/[0.03]"
       >
         <div className="max-w-3xl mx-auto px-4 py-16">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-brand">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand">
             Imports
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">

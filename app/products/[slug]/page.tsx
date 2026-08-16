@@ -44,7 +44,7 @@ const isFavorite = favoriteIds.has(product.id);
         </p>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
+        <div className="relative aspect-square bg-gray-100 rounded-lg border-2 border-black/10 dark:border-white/10 overflow-hidden">
           <div className="absolute top-2 right-2 z-10 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow">
             <FavoriteButton
               productId={product.id}

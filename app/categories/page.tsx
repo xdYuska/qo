@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllCategories } from "@/lib/categories";
+import CategoryIcon from "@/components/storefront/CategoryIcon";
 
 export default async function CategoriesPage() {
   const categories = await getAllCategories();
@@ -17,8 +18,9 @@ export default async function CategoriesPage() {
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
-              className="flex items-center justify-center text-center min-h-20 p-4 border rounded-lg bg-background/5 hover:bg-background/10 hover:shadow-md active:scale-[0.98] transition"
+              className="flex flex-row items-center gap-3 min-h-20 p-4 border rounded-lg bg-background/5 hover:bg-background/10 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
             >
+              <CategoryIcon slug={category.slug} className="w-8 h-8 shrink-0 text-brand" />
               <span className="text-xl font-medium text-brand">
                 {category.name}
               </span>

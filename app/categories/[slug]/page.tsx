@@ -1,5 +1,6 @@
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/categories";
 import ProductCard from "@/components/storefront/ProductCard";
+import CategoryIcon from "@/components/storefront/CategoryIcon";
 import { notFound } from "next/navigation";
 
 export default async function CategoryPage({
@@ -19,7 +20,10 @@ export default async function CategoryPage({
   return (
     <main className="shop-wallpaper min-h-screen">
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-6">{category.name}</h1>
+      <div className="flex items-center gap-3 mb-6">
+        <CategoryIcon slug={category.slug} className="w-8 h-8 shrink-0 text-brand" />
+        <h1 className="text-2xl font-semibold">{category.name}</h1>
+      </div>
 
       {products.length === 0 ? (
         <p className="text-gray-500">No products in this category yet.</p>

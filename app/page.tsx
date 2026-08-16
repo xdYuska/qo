@@ -15,7 +15,7 @@ export default function Home() {
         </p>
         <Link
           href="/shop"
-          className="mt-8 inline-block bg-[#08a2c1] text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#0791ac] transition"
+          className="mt-8 inline-block bg-brand text-white text-sm font-medium px-6 py-3 rounded-lg hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
         >
           Shop Now
         </Link>
@@ -26,7 +26,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
          <SmoothScrollLink 
             href="#company"
-            className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition">
+            className="block p-6 border rounded-lg hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out">
             <h2 className="font-semibold text-brand">ABOUT US</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               Who we are and what we stand for.
@@ -35,7 +35,7 @@ export default function Home() {
 
           <SmoothScrollLink
             href="#distribution"
-            className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
+            className="block p-6 border rounded-lg hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
           >
             <h2 className="font-semibold text-brand">DISTRIBUTION</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
@@ -45,7 +45,7 @@ export default function Home() {
 
           <SmoothScrollLink
             href="#imports"
-            className="block p-6 border rounded-lg hover:shadow-md active:scale-[0.98] transition"
+            className="block p-6 border rounded-lg hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
           >
             <h2 className="font-semibold text-brand">IMPORTS</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
@@ -59,7 +59,7 @@ export default function Home() {
 <section className="max-w-6xl mx-auto px-4 pb-14 sm:pb-20">
   <Link
     href="/locations"
-    className="flex flex-col sm:flex-row items-center justify-between gap-4 p-8 rounded-lg bg-[#08a2c1] text-white hover:bg-[#0791ac] active:scale-[0.99] transition"
+    className="flex flex-col sm:flex-row items-center justify-between gap-4 p-8 rounded-lg bg-brand text-white hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
   >
     <div className="text-center sm:text-left">
       <h2 className="text-xl sm:text-2xl font-semibold">

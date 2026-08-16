@@ -7,6 +7,7 @@ type Product = {
   id: string;
   name: string;
   slug: string;
+  description: string | null;
   price: number;
   image_path: string | null;
   isFavorite?: boolean;
@@ -41,9 +42,14 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
       </div>
       <div className="p-3 bg-white">
-        <h3 className="text-lg font-medium text-brand line-clamp-2 h-10">
+        <h3 className="text-lg font-medium text-black line-clamp-2 h-10">
           {product.name}
         </h3>
+        {product.description && (
+          <p className="text-sm text-gray-500 line-clamp-2 mt-1">
+            {product.description}
+          </p>
+        )}
         <p className="text-sm text-gray-600 mt-1">{product.price} ₼</p>
       </div>
     </Link>

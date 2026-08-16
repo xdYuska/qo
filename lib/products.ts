@@ -9,7 +9,7 @@ export async function getAllProducts(filters?: {
 
   let query = supabase
     .from("products")
-    .select("id, name, slug, price, image_path")
+    .select("id, name, slug, description, price, image_path")
     .order("created_at", { ascending: false });
 
   if (filters?.search) {

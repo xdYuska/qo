@@ -9,3 +9,8 @@ export function getLogoUrl(): string {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   return `${supabaseUrl}/storage/v1/object/public/branding/logo.png`;
 }
+
+export function getCategoryIconUrl(slug: string): string {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  return `${supabaseUrl}/storage/v1/object/public/product-images/categories/${slug}.png`;
+}

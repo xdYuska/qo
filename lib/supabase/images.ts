@@ -17,5 +17,12 @@ export function getCategoryIconUrl(slug: string): string {
 
 export function getShopBannerUrl(): string {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  return `${supabaseUrl}/storage/v1/object/public/branding/shop-banner.jpeg`;
+  return `${supabaseUrl}/storage/v1/object/public/branding/shop-banner.jpg`;
+}
+
+export function getHomeImageUrl(
+  section: "hero" | "about" | "distribution" | "imports" | "locations"
+): string {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  return `${supabaseUrl}/storage/v1/object/public/branding/home-${section}.jpg`;
 }

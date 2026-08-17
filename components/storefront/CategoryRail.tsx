@@ -59,7 +59,7 @@ export default function CategoryRail({
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-display font-bold text-xl">Categories</h2>
+        <h2 className="font-display font-bold text-2xl">Categories</h2>
 
         <div className="flex items-center gap-3">
           <Link

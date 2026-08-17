@@ -6,7 +6,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-14 sm:py-20 text-center">
-        <h1 className="text-3xl sm:text-4xl font-bold text-brand">
+        <h1 className="text-3xl sm:text-5xl font-bold text-foreground font-display">
           Qediroglu MMC
         </h1>
         <p className="mt-4 text-base sm:text-lg text-black/70 dark:text-white/70 max-w-xl mx-auto">
@@ -15,7 +15,7 @@ export default function Home() {
         </p>
         <Link
           href="/shop"
-          className="mt-8 inline-block bg-brand text-white text-sm font-medium px-6 py-3 rounded-lg hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
+          className="mt-8 inline-block bg-foreground text-white text-sm font-medium px-6 py-3 rounded-lg hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
         >
           Shop Now
         </Link>
@@ -27,7 +27,7 @@ export default function Home() {
          <SmoothScrollLink 
             href="#company"
             className="block p-6 border rounded-lg hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out">
-            <h2 className="font-semibold text-brand">ABOUT US</h2>
+            <h2 className="font-semibold text-foreground font-display">ABOUT US</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               Who we are and what we stand for.
             </p>
@@ -37,7 +37,7 @@ export default function Home() {
             href="#distribution"
             className="block p-6 border rounded-lg hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
           >
-            <h2 className="font-semibold text-brand">DISTRIBUTION</h2>
+            <h2 className="font-semibold text-foreground font-display">DISTRIBUTION</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               How we get products from source to shelf.
             </p>
@@ -47,7 +47,7 @@ export default function Home() {
             href="#imports"
             className="block p-6 border rounded-lg hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
           >
-            <h2 className="font-semibold text-brand">IMPORTS</h2>
+            <h2 className="font-semibold text-foreground font-display">IMPORTS</h2>
             <p className="mt-2 text-sm text-black/60 dark:text-white/60">
               The countries and partners we source from.
             </p>
@@ -59,7 +59,7 @@ export default function Home() {
 <section className="max-w-6xl mx-auto px-4 pb-14 sm:pb-20">
   <Link
     href="/locations"
-    className="flex flex-col sm:flex-row items-center justify-between gap-4 p-8 rounded-lg bg-brand text-white hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
+    className="flex flex-col sm:flex-row items-center justify-between gap-4 p-8 rounded-lg bg-citrus text-white hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
   >
     <div className="text-center sm:text-left">
       <h2 className="text-xl sm:text-2xl font-semibold">
@@ -70,7 +70,7 @@ export default function Home() {
         info.
       </p>
     </div>
-    <span className="shrink-0 text-sm font-medium bg-white text-brand rounded-lg px-5 py-3">
+    <span className="shrink-0 text-sm font-medium bg-white text-citrus rounded-lg px-5 py-3">
       View Locations →
     </span>
   </Link>
@@ -82,7 +82,7 @@ export default function Home() {
         className="scroll-mt-20 border-t bg-black/[0.02] dark:bg-white/[0.03]"
       >
         <div className="max-w-3xl mx-auto px-4 py-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-brand">
+          <h2 className="text-2xl sm:text-3xl font-bold font-display text-foreground">
             About Us
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
@@ -97,7 +97,7 @@ export default function Home() {
       {/* Distribution */}
       <section id="distribution" className="scroll-mt-20 border-t">
         <div className="max-w-3xl mx-auto px-4 py-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-brand">
+          <h2 className="text-2xl sm:text-3xl font-bold font-display text-foreground">
             Distribution
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">
@@ -114,7 +114,7 @@ export default function Home() {
         className="scroll-mt-20 border-t bg-black/[0.02] dark:bg-white/[0.03]"
       >
         <div className="max-w-3xl mx-auto px-4 py-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-brand">
+          <h2 className="text-2xl sm:text-3xl font-bold font-display text-foreground">
             Imports
           </h2>
           <p className="mt-4 text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed">

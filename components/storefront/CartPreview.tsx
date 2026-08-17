@@ -74,7 +74,7 @@ export default function CartPreview({
 
               <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
                 <span className="text-sm font-medium text-foreground">Total</span>
-                <span className="text-sm font-display font-bold text-brand">
+                <span className="text-sm font-display font-bold text-citrus">
                   {total.toFixed(2)} ₼
                 </span>
               </div>

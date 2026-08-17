@@ -10,7 +10,7 @@ type Category = {
   slug: string;
 };
 
-const TILE_COLORS = ["bg-brand/10", "bg-citrus/15", "bg-leaf/15", "bg-sun/25"];
+const TILE_COLORS = ["bg-citrus", "bg-leaf", "bg-sun"];
 const SCROLL_AMOUNT = 360;
 
 export default function CategoryRail({
@@ -64,7 +64,7 @@ export default function CategoryRail({
         <div className="flex items-center gap-3">
           <Link
             href="/categories"
-            className="text-sm font-medium text-brand hover:underline"
+            className="text-sm font-medium text-citrus hover:underline"
           >
             View all
           </Link>
@@ -125,15 +125,15 @@ export default function CategoryRail({
           className="flex flex-col items-center gap-2 shrink-0 w-28"
         >
           <div
-            className={`w-28 h-28 rounded-2xl flex items-center justify-center transition bg-brand/10 ${
-              isAllActive ? "ring-2 ring-brand" : ""
+            className={`w-28 h-28 rounded-2xl flex items-center justify-center transition bg-sun ${
+              isAllActive ? "ring-2 ring-citrus" : ""
             }`}
           >
             <CategoryIcon slug="all" className="w-14 h-14" />
           </div>
           <span
             className={`text-sm font-medium text-center leading-tight ${
-              isAllActive ? "text-brand" : "text-foreground"
+              isAllActive ? "text-citrus" : "text-foreground"
             }`}
           >
             All Products
@@ -152,13 +152,13 @@ export default function CategoryRail({
               <div
                 className={`w-28 h-28 rounded-2xl flex items-center justify-center transition ${
                   TILE_COLORS[i % TILE_COLORS.length]
-                } ${isActive ? "ring-2 ring-brand" : ""}`}
+                } ${isActive ? "ring-2 ring-citrus" : ""}`}
               >
                 <CategoryIcon slug={cat.slug} className="w-14 h-14" />
               </div>
               <span
                 className={`text-sm font-medium text-center leading-tight ${
-                  isActive ? "text-brand" : "text-foreground"
+                  isActive ? "text-citrus" : "text-foreground"
                 }`}
               >
                 {cat.name}

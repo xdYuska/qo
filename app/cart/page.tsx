@@ -41,7 +41,7 @@ export default async function CartPage() {
 
       <div className="mt-8 border-t pt-6 flex justify-end">
         <div className="text-right">
-          <p className="text-lg font-medium text-brand">
+          <p className="text-lg font-medium text-citrus">
             Subtotal: {subtotal.toFixed(2)} ₼
           </p>
 

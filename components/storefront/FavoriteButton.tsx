@@ -54,7 +54,7 @@ export default function FavoriteButton({
         className="disabled:opacity-60"
       >
         <Image
-          src={isFavorite ? "/icons/heart-filled.png" : "/icons/heart-outline.png"}
+          src={isFavorite ? "/icons/heart-full.png" : "/icons/heart-outline.png"}
           alt=""
           width={20}
           height={20}

@@ -48,7 +48,7 @@ export default function AddToCartButton({ productId }: { productId: string }) {
         disabled={isAdding}
         aria-label="Add 1 to cart"
         className={`flex items-center justify-center w-8 h-8 rounded-full shadow text-white transition disabled:opacity-60 ${
-          justAdded ? "bg-leaf" : "bg-gray-600 hover:opacity-90"
+          justAdded ? "bg-leaf" : "bg-foreground hover:opacity-90"
         }`}
       >
         {justAdded ? (

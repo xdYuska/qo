@@ -8,7 +8,7 @@ export default async function LoginPage({
 
   return (
     <main className="max-w-sm mx-auto px-4 py-12">
-      <h1 className="text-2xl font-semibold mb-6">Log in</h1>
+      <h1 className="text-2xl font-bold mb-6 text-foreground">Log in</h1>
 
       {error && (
         <p className="text-red-600 text-sm mb-4 bg-red-50 border border-red-200 rounded-md p-3">
@@ -43,7 +43,7 @@ export default async function LoginPage({
 
         <button
           type="submit"
-          className="bg-gray-900 text-white rounded-md px-4 py-2 text-sm hover:bg-gray-800 mt-2"
+          className="bg-foreground text-background rounded-md px-4 py-2 text-sm hover:opacity-90 mt-2"
         >
           Log in
         </button>

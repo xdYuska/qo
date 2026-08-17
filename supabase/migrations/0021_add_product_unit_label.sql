@@ -1,0 +1,1 @@
+alter table products add column unit_label text;

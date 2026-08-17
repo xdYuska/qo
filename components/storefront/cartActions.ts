@@ -4,14 +4,13 @@ import { addToCart } from "@/lib/cart";
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
-export async function quickAddToCart(productId: string) {
+export async function quickAddToCart(productId: string, quantity: number = 1) {
   const supabase = await createClient();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Create a guest session only when the visitor actually needs a cart.
   if (!user) {
     const { error } = await supabase.auth.signInAnonymously();
 
@@ -21,7 +20,7 @@ export async function quickAddToCart(productId: string) {
   }
 
   try {
-    await addToCart(productId, 1);
+    await addToCart(productId, quantity);
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Could not add to cart.";

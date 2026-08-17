@@ -2,7 +2,7 @@ import { getProductBySlug } from "@/lib/products";
 import { getProductImageUrl } from "@/lib/supabase/images";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { addToCartAction } from "./actions";
+import ProductAddToCart from "@/components/storefront/ProductAddToCart";
 import FavoriteButton from "@/components/storefront/FavoriteButton";
 import { getFavoriteProductIds } from "@/lib/favorites";
 
@@ -66,10 +66,10 @@ const isFavorite = favoriteIds.has(product.id);
         </div>
 
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-bold text-foreground">
             {product.name}
           </h1>
-          <p className="text-xl text-gray-700 mt-2">{product.price} ₼</p>
+          <p className="text-xl font-display font-bold text-foreground">{product.price} ₼</p>
 
           {product.description && (
             <p className="text-gray-600 mt-4">{product.description}</p>
@@ -82,24 +82,10 @@ const isFavorite = favoriteIds.has(product.id);
           </p>
 
           {product.stock_quantity > 0 && (
-            <form action={addToCartAction} className="flex items-center gap-3 mt-4">
-              <input type="hidden" name="productId" value={product.id} />
-              <input type="hidden" name="slug" value={product.slug} />
-              <input
-                type="number"
-                name="quantity"
-                defaultValue={1}
-                min={1}
-                max={product.stock_quantity}
-                className="border rounded-md px-3 py-2 text-sm w-20"
-              />
-              <button
-                type="submit"
-                className="bg-gray-900 text-white rounded-md px-4 py-2 text-sm hover:bg-gray-800"
-              >
-                Add to Cart
-              </button>
-            </form>
+            <ProductAddToCart
+              productId={product.id}
+              maxQuantity={product.stock_quantity}
+            />
           )}
         </div>
       </div>

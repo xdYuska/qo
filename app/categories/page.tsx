@@ -10,7 +10,7 @@ export default async function CategoriesPage() {
   return (
     <main className="shop-wallpaper min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="font-display font-bold text-2xl mb-6">Categories</h1>
+        <h1 className="font-display font-bold text-2xl mb-6 text-foreground">Categories</h1>
 
         {categories.length === 0 ? (
           <p className="text-muted">No categories yet.</p>

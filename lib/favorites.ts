@@ -37,7 +37,7 @@ export async function getFavoriteProducts() {
 
   const { data, error } = await supabase
     .from("favorites")
-    .select("product_id, products (id, name, slug, price, image_path)")
+    .select("product_id, products (id, name, slug, price, image_path, unit_label)")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false });
 

@@ -58,7 +58,7 @@ export default function SearchFilterForm({
 
       <button
         type="submit"
-        className="bg-gray-900 text-white rounded-md px-4 py-2 text-sm hover:bg-gray-800"
+        className="bg-foreground text-white rounded-md px-4 py-2 text-sm hover:bg-gray-800"
       >
         Search
       </button>

@@ -226,7 +226,7 @@ export default function CheckoutForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-5 py-3 rounded-md bg-[#08a2c1] text-white hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-5 py-3 rounded-md bg-foreground text-background hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Placing Order..." : "Place Order"}
       </button>

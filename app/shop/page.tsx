@@ -22,7 +22,7 @@ const [products, categories, activeCategory] = await Promise.all([
       <div className="max-w-6xl mx-auto px-4 py-8">
         <CategoryRail categories={categories} activeSlug={params.category} />
 
-        <h1 className="font-display font-bold text-2xl mb-6">
+        <h1 className="font-display font-bold text-2xl mb-6 text-foreground">
   {activeCategory ? activeCategory.name : "All Products"}
 </h1>
 

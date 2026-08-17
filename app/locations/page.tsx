@@ -109,7 +109,7 @@ const LOCATIONS: StoreLocation[] = [
 export default function LocationsPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-2">Our Locations</h1>
+      <h1 className="text-2xl font-bold mb-2 text-foreground">Our Locations</h1>
       <p className="text-sm text-black/60 dark:text-white/60 mb-6">
         {LOCATIONS.length} Qediroglu locations.
       </p>

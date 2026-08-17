@@ -143,7 +143,7 @@ export default function AddressManager({
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="px-3 py-1.5 rounded-md bg-[#08a2c1] text-white text-sm disabled:opacity-60"
+              className="px-3 py-1.5 rounded-md bg-foreground text-background text-sm disabled:opacity-60"
             >
               {isSaving ? "Saving..." : "Save"}
             </button>

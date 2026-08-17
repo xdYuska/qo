@@ -83,7 +83,7 @@ export default function CartPreview({
 
           <Link
             href="/cart"
-            className="mt-3 block text-center text-sm font-medium bg-brand text-white rounded-md py-2 hover:opacity-90 transition"
+            className="mt-3 block text-center text-sm font-medium bg-foreground text-background rounded-md py-2 hover:opacity-90 transition"
           >
             View Cart
           </Link>

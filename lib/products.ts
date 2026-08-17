@@ -9,7 +9,7 @@ export async function getAllProducts(filters?: {
 
   let query = supabase
     .from("products")
-    .select("id, name, slug, description, price, image_path")
+    .select("id, name, slug, price, image_path, unit_label")
     .order("created_at", { ascending: false });
 
   if (filters?.search) {
@@ -54,7 +54,7 @@ export async function getProductBySlug(slug: string) {
 
   const { data, error } = await supabase
     .from("products")
-    .select("id, name, slug, description, price, stock_quantity, image_path")
+    .select("id, name, slug, description, price, stock_quantity, image_path, unit_label")
     .eq("slug", slug)
     .single();
 

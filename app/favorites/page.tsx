@@ -17,7 +17,7 @@ export default async function FavoritesPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold text-brand mb-6">
+      <h1 className="text-2xl font-bold text-foreground mb-6">
         My Favorites
       </h1>
 
@@ -29,13 +29,9 @@ export default async function FavoritesPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
          {products.map((product) => (
   <ProductCard
-    key={product.id}
-    product={{ 
-      ...product, 
-      isFavorite: true,
-      description: "" // 👈 Hardcode an empty string directly here
-    }}
-  />
+  key={product.id}
+  product={{ ...product, isFavorite: true }}
+/>
 ))}
 
         </div>

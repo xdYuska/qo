@@ -22,7 +22,7 @@ export default async function CategoryPage({
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-6">
         <CategoryIcon slug={category.slug} className="w-8 h-8 shrink-0 text-brand" />
-        <h1 className="text-2xl font-bold">{category.name}</h1>
+        <h1 className="text-2xl font-bold text-foreground">{category.name}</h1>
       </div>
 
       {products.length === 0 ? (

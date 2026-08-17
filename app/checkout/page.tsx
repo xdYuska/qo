@@ -33,11 +33,13 @@ export default async function CheckoutPage() {
 
   if (!cart || cart.items.length === 0) {
     return (
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-brand mb-6">
-          Checkout
-        </h1>
-        <p className="text-gray-500">Your cart is empty.</p>
+      <main className="shop-wallpaper min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <h1 className="text-2xl font-bold text-foreground mb-6">
+            Checkout
+          </h1>
+          <p className="text-muted">Your cart is empty.</p>
+        </div>
       </main>
     );
   }
@@ -50,7 +52,7 @@ export default async function CheckoutPage() {
   return (
     <main className="shop-wallpaper min-h-screen">
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold text-brand mb-8">
+      <h1 className="text-2xl font-bold text-foreground mb-8">
         Checkout
       </h1>
 

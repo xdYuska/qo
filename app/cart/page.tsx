@@ -6,12 +6,14 @@ export default async function CartPage() {
 
   if (!cart || cart.items.length === 0) {
     return (
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-brand mb-6">
-          Your Cart
-        </h1>
+      <main className="shop-wallpaper min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <h1 className="text-2xl font-bold text-foreground mb-6">
+            Your Cart
+          </h1>
 
-        <p className="text-gray-500">Your cart is empty.</p>
+          <p className="text-muted">Your cart is empty.</p>
+        </div>
       </main>
     );
   }
@@ -27,7 +29,7 @@ export default async function CartPage() {
   return (
     <main className="shop-wallpaper min-h-screen">
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold text-brand mb-6">
+      <h1 className="text-2xl font-bold text-foreground mb-6">
         Your Cart
       </h1>
 
@@ -46,7 +48,7 @@ export default async function CartPage() {
           <div className="mt-4 flex justify-end">
   <a
     href="/checkout"
-    className="px-5 py-2 rounded-md bg-[#08a2c1] text-white hover:opacity-90"
+    className="px-5 py-2 rounded-md bg-foreground text-background hover:opacity-90"
   >
     Checkout
   </a>

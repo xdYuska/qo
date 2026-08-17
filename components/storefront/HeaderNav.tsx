@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { logout } from "@/app/logout/actions";
 import LanguageSelector from "./LanguageSelector";
@@ -22,6 +23,13 @@ export default function HeaderNav({
   }[];
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Needed so createPortal only runs client-side (document isn't
+  // available during SSR).
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Lock background scroll while the panel is open.
   useEffect(() => {
@@ -87,67 +95,78 @@ export default function HeaderNav({
         )}
       </button>
 
-      {/* Backdrop */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 dark:bg-black/60 z-40 md:hidden"
-          onClick={() => setIsOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+      {/* Backdrop + side panel are portaled to document.body so they
+         stay truly fixed to the viewport, regardless of the header's
+         own transform/sticky positioning (see HeaderVisibility). */}
+      {mounted &&
+        createPortal(
+          <>
+            {/* Backdrop */}
+            {isOpen && (
+              <div
+                className="fixed inset-0 bg-black/40 dark:bg-black/60 z-40 md:hidden"
+                onClick={() => setIsOpen(false)}
+                aria-hidden="true"
+              />
+            )}
 
-      {/* Side panel */}
-<div
-  className="fixed inset-0 overflow-hidden pointer-events-none z-50 md:hidden"
-  aria-hidden={!isOpen}
->
-  <div
-    id="mobile-nav-panel"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Menu"
-    className={`absolute inset-y-0 right-0 w-72 max-w-[80%] bg-[var(--background)] text-[var(--foreground)] border-l border-black/10 dark:border-white/10 shadow-lg transform transition-transform duration-300 ease-in-out pointer-events-auto ${
-      isOpen ? "translate-x-0" : "translate-x-full"
-    }`}
-  >
-        <div className="flex items-center justify-between px-4 py-4 border-b border-black/10 dark:border-white/10">
-          <span className="font-display font-semibold text-brand">Menu</span>
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            aria-label="Close menu"
-            className="p-2 -mr-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
+            {/* Side panel */}
+            <div
+              className="fixed inset-0 overflow-hidden pointer-events-none z-50 md:hidden"
+              aria-hidden={!isOpen}
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
+              <div
+                id="mobile-nav-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Menu"
+                className={`absolute inset-y-0 right-0 w-72 max-w-[80%] bg-[var(--background)] text-[var(--foreground)] border-l border-black/10 dark:border-white/10 shadow-lg transform transition-transform duration-300 ease-in-out pointer-events-auto ${
+                  isOpen ? "translate-x-0" : "translate-x-full"
+                }`}
+              >
+                <div className="flex items-center justify-between px-4 py-4 border-b border-black/10 dark:border-white/10">
+                  <span className="font-display font-semibold text-brand">
+                    Menu
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close menu"
+                    className="p-2 -mr-2"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-6 h-6"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                </div>
 
-        <div className="px-4 py-3 border-b border-black/10 dark:border-white/10">
-  <LanguageSelector className="w-full" />
-</div>
+                <div className="px-4 py-3 border-b border-black/10 dark:border-white/10">
+                  <LanguageSelector className="w-full" />
+                </div>
 
-        <nav className="flex flex-col p-4 text-base">
-          <NavLinks
-            isRealUser={isRealUser}
-            cartCount={cartCount}
-            linkClass="py-3 border-b border-black/10 dark:border-white/10"
-            onNavigate={() => setIsOpen(false)}
-          />
-        </nav>
-      </div>
-      </div>
+                <nav className="flex flex-col p-4 text-base">
+                  <NavLinks
+                    isRealUser={isRealUser}
+                    cartCount={cartCount}
+                    linkClass="py-3 border-b border-black/10 dark:border-white/10"
+                    onNavigate={() => setIsOpen(false)}
+                  />
+                </nav>
+              </div>
+            </div>
+          </>,
+          document.body
+        )}
     </>
   );
 }

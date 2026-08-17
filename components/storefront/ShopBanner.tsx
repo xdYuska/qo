@@ -1,36 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { getShopBannerUrl } from "@/lib/supabase/images";
-
-export default function ShopBanner({
-  href,
-  alt = "Qediroglu shop promotion",
-}: {
-  href?: string;
-  alt?: string;
-}) {
-  const banner = (
-    <div className="relative w-full aspect-[3/1] rounded-2xl overflow-hidden">
-      <Image
-        src={getShopBannerUrl()}
-        alt={alt}
-        fill
-        priority
-        sizes="(max-width: 1024px) 100vw, 1152px"
-        className="object-cover"
-      />
-    </div>
-  );
-
+export default function ShopBanner() {
   return (
-    <div className="mb-8">
-      {href ? (
-        <Link href={href} className="block">
-          {banner}
-        </Link>
-      ) : (
-        banner
-      )}
+    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
+      <div className="bg-brand border-b border-black/10 dark:border-white/10">
+        <div className="max-w-6xl mx-auto px-4 h-28 sm:h-32 flex items-center">
+          {/* Content goes here */}
+        </div>
+      </div>
     </div>
   );
 }

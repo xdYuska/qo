@@ -20,9 +20,9 @@ const [products, categories, activeCategory] = await Promise.all([
 
   return (
     <main className="shop-wallpaper min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <ShopBanner />
+      <ShopBanner />
 
+      <div className="max-w-6xl mx-auto px-4 py-8">
         <CategoryRail categories={categories} activeSlug={params.category} />
 
         <h1 className="font-display font-bold text-2xl mb-6 text-foreground">

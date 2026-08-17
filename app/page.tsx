@@ -65,7 +65,7 @@ export default function Home() {
           <ImageOrPlaceholder
             src={getHomeImageUrl("hero")}
             alt="Qediroglu customer with fresh groceries"
-            fit="contain"
+            fit="cover"
             className="w-full h-full"
             sizes="45vw"
           />

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
-import { getCartItemCount } from "@/lib/cart";
+import { getCart } from "@/lib/cart";
 import { getLogoUrl } from "@/lib/supabase/images";
 import HeaderNav from "./HeaderNav";
 
@@ -12,7 +12,19 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   const isRealUser = Boolean(user && !user.is_anonymous);
-  const cartCount = await getCartItemCount();
+  const cart = await getCart();
+
+  const cartItems = (cart?.items ?? [])
+    .filter((item) => item.products)
+    .map((item) => ({
+      id: item.id,
+      name: item.products!.name,
+      price: item.products!.price,
+      image_path: item.products!.image_path,
+      quantity: item.quantity,
+    }));
+
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <header className="border-b border-black/10 dark:border-white/10">
@@ -31,7 +43,11 @@ export default async function Header() {
           </span>
         </Link>
 
-        <HeaderNav isRealUser={isRealUser} cartCount={cartCount} />
+        <HeaderNav
+          isRealUser={isRealUser}
+          cartCount={cartCount}
+          cartItems={cartItems}
+        />
       </div>
     </header>
   );

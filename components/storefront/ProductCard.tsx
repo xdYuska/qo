@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProductImageUrl } from "@/lib/supabase/images";
 import FavoriteButton from "./FavoriteButton";
+import AddToCartButton from "./AddToCartButton";
 
 type Product = {
   id: string;
@@ -28,6 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
             initialIsFavorite={product.isFavorite ?? false}
           />
         </div>
+
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -50,7 +52,10 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.description}
           </p>
         )}
-        <p className="text-sm text-gray-600 mt-1">{product.price} ₼</p>
+        <div className="flex items-center justify-between mt-1">
+  <p className="text-sm text-gray-600">{product.price} ₼</p>
+  <AddToCartButton productId={product.id} />
+</div>
       </div>
     </Link>
   );

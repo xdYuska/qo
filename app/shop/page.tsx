@@ -3,6 +3,7 @@ import { getAllCategories } from "@/lib/categories";
 import ProductCard from "@/components/storefront/ProductCard";
 import SearchFilterForm from "@/components/storefront/SearchFilterForm";
 import CategoryRail from "@/components/storefront/CategoryRail";
+import ShopBanner from "@/components/storefront/ShopBanner";
 import { getCategoryBySlug } from "@/lib/categories";
 
 export default async function ShopPage({
@@ -20,6 +21,8 @@ const [products, categories, activeCategory] = await Promise.all([
   return (
     <main className="shop-wallpaper min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-8">
+        <ShopBanner />
+
         <CategoryRail categories={categories} activeSlug={params.category} />
 
         <h1 className="font-display font-bold text-2xl mb-6 text-foreground">

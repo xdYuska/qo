@@ -61,7 +61,7 @@ export default function Home() {
 
         {/* Desktop: giant cutout bleeding past the text column, right up
            to the edge of the screen — not boxed in. */}
-        <div className="hidden lg:block absolute inset-y-0 right-0 w-[46%] xl:w-[42%] pointer-events-none">
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-[46%] xl:w-[50%] pointer-events-none">
           <ImageOrPlaceholder
             src={getHomeImageUrl("hero")}
             alt="Qediroglu customer with fresh groceries"

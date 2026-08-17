@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCart } from "@/lib/cart";
 import { getLogoUrl } from "@/lib/supabase/images";
 import HeaderNav from "./HeaderNav";
+import HeaderVisibility from "./HeaderVisibility";
 
 export default async function Header() {
   const supabase = await createClient();
@@ -27,6 +28,7 @@ export default async function Header() {
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
+  <HeaderVisibility>
     <header className="border-b border-black/10 dark:border-white/10">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
@@ -50,5 +52,6 @@ export default async function Header() {
         />
       </div>
     </header>
+    </HeaderVisibility>
   );
 }

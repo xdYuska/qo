@@ -98,7 +98,7 @@ export default function CartItem({ item }: CartItemProps) {
   }
 
   return (
-    <div className="flex gap-4 border rounded-lg p-4">
+    <div className="flex gap-4 border rounded-xl p-4">
       <div className="relative w-24 h-24 shrink-0 bg-gray-100 rounded-md overflow-hidden">
         {imageUrl ? (
           <Image
@@ -115,11 +115,11 @@ export default function CartItem({ item }: CartItemProps) {
       </div>
 
       <div className="flex-1">
-        <h2 className="text-lg font-medium text-brand">
+        <h2 className="text-2xl font-medium text-foreground">
           {product.name}
         </h2>
 
-        <p className="text-gray-600 mt-1">
+        <p className="text-foreground font-display font-bold mt-1">
           {Number(product.price).toFixed(2)} ₼
         </p>
 
@@ -147,7 +147,7 @@ export default function CartItem({ item }: CartItemProps) {
           </button>
         </div>
 
-        <p className="text-brand font-medium mt-2">
+        <p className="text-foreground font-bold font-display mt-2">
           Total: {(Number(product.price) * quantity).toFixed(2)} ₼
         </p>
 

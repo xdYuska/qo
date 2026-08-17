@@ -40,21 +40,21 @@ export default async function CartPage() {
       </div>
 
       <div className="mt-8 border-t pt-6 flex justify-end">
-        <div className="text-right">
-          <p className="text-lg font-medium text-citrus">
-            Subtotal: {subtotal.toFixed(2)} ₼
-          </p>
+  <div className="w-full">
+    <div className="flex justify-between items-center text-lg font-bold">
+      <span className="text-foreground">Subtotal</span>
+      <span className="text-citrus">{subtotal.toFixed(2)} ₼</span>
+    </div>
 
-          <div className="mt-4 flex justify-end">
-  <a
-    href="/checkout"
-    className="px-5 py-2 rounded-md bg-foreground text-background hover:opacity-90"
-  >
-    Checkout
-  </a>
+    <div className="mt-4 flex justify-end">
+      <a
+        href="/checkout"
+        className="px-5 py-2 rounded-md bg-foreground text-background hover:opacity-90">
+        Checkout
+      </a>
+    </div>
+  </div>
 </div>
-        </div>
-      </div>
     </div>
     </main>
   );

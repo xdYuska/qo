@@ -8,43 +8,66 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gradient-to-br from-brand to-[#075E71] text-white overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 py-14 sm:py-20 lg:py-28 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="text-center lg:text-left">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-white/15 rounded-full px-3 py-1.5">
-              Fresh &middot; Local &middot; Imported
-            </span>
+        <div className="max-w-6xl mx-auto px-4 py-14 sm:py-20 lg:py-28 relative">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="relative z-10 text-center lg:text-left">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-white/15 rounded-full px-3 py-1.5">
+                Fresh &middot; Local &middot; Imported
+              </span>
 
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold font-display leading-tight">
-              Qediroglu MMC
-            </h1>
+              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold font-display leading-tight">
+                Qədiroğlu MMC
+              </h1>
 
-            <p className="mt-4 text-base sm:text-lg text-white/85 max-w-xl mx-auto lg:mx-0">
-              Fresh groceries, trusted distribution, and imports from around
-              the world — delivered to your door.
-            </p>
+              <p className="mt-4 text-base sm:text-lg text-white/85 max-w-xl mx-auto lg:mx-0">
+                Fresh groceries, trusted distribution, and imports from
+                around the world — delivered to your door.
+              </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <Link
-                href="/shop"
-                className="bg-white text-brand text-sm font-semibold px-6 py-3 rounded-lg hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
-              >
-                Shop Now
-              </Link>
-              <Link
-                href="/locations"
-                className="bg-white/10 border border-white/30 text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/20 hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
-              >
-                Find a Store
-              </Link>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <Link
+                  href="/shop"
+                  className="bg-white text-brand text-sm font-semibold px-6 py-3 rounded-lg hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
+                >
+                  Shop Now
+                </Link>
+                <Link
+                  href="/locations"
+                  className="bg-white/10 border border-white/30 text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/20 hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
+                >
+                  Find a Store
+                </Link>
+              </div>
             </div>
+
+            {/* Empty spacer column — keeps the text half-width on desktop.
+               The actual image is positioned absolutely below so it can
+               bleed past this column's edges instead of being boxed in. */}
+            <div className="hidden lg:block" aria-hidden="true" />
           </div>
 
+          {/* Mobile / tablet: normal contained cutout below the text */}
+          <div className="lg:hidden mt-10">
+            <ImageOrPlaceholder
+              src={getHomeImageUrl("hero")}
+              alt="Qediroglu customer with fresh groceries"
+              fit="contain"
+              className="aspect-square w-full max-w-xs mx-auto"
+              priority
+              sizes="(max-width: 1024px) 100vw"
+            />
+          </div>
+        </div>
+
+        {/* Desktop: giant cutout bleeding past the text column, right up
+           to the edge of the screen — not boxed in. */}
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-[46%] xl:w-[42%] pointer-events-none">
           <ImageOrPlaceholder
             src={getHomeImageUrl("hero")}
-            alt="Fresh groceries and produce"
-            className="aspect-[4/3] w-full rounded-3xl shadow-xl"
-            priority
-            sizes="(max-width: 1024px) 100vw, 560px"
+            alt="Qediroglu customer with fresh groceries"
+            fit="contain"
+            className="w-full h-full"
+            sizes="45vw"
           />
         </div>
       </section>
@@ -144,7 +167,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 pb-14 sm:pb-20">
         <Link
           href="/locations"
-          className="group block rounded-2xl overflow-hidden bg-leaf text-white hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
+          className="group block rounded-2xl overflow-hidden bg-citrus text-white hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out"
         >
           <div className="grid sm:grid-cols-2 items-center">
             <div className="p-8 sm:p-12 text-center sm:text-left">
@@ -172,7 +195,7 @@ export default function Home() {
                 contact info.
               </p>
 
-              <span className="mt-6 inline-block text-sm font-medium bg-white text-leaf rounded-lg px-5 py-3 group-hover:opacity-90 transition duration-200 ease-out">
+              <span className="mt-6 inline-block text-sm font-medium bg-white text-citrus rounded-lg px-5 py-3 group-hover:opacity-90 transition duration-200 ease-out">
                 View Locations →
               </span>
             </div>

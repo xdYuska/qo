@@ -24,5 +24,8 @@ export function getHomeImageUrl(
   section: "hero" | "about" | "distribution" | "imports" | "locations"
 ): string {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  return `${supabaseUrl}/storage/v1/object/public/branding/home-${section}.jpg`;
+  // The hero image is a transparent-background cutout PNG so it can bleed
+  // past its container; the rest are regular cropped photos.
+  const ext = section === "hero" ? "png" : "jpg";
+  return `${supabaseUrl}/storage/v1/object/public/branding/home-${section}.${ext}`;
 }

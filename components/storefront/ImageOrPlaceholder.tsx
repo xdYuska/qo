@@ -9,12 +9,17 @@ export default function ImageOrPlaceholder({
   className = "",
   priority = false,
   sizes,
+  fit = "cover",
 }: {
   src: string;
   alt: string;
   className?: string;
   priority?: boolean;
   sizes?: string;
+  /** "cover" fills and crops (photos in a fixed box). "contain" preserves
+   * the whole image with no cropping — use for transparent-background
+   * cutout PNGs that should bleed freely instead of sitting in a box. */
+  fit?: "cover" | "contain";
 }) {
   const [errored, setErrored] = useState(false);
 
@@ -45,14 +50,16 @@ export default function ImageOrPlaceholder({
   }
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div
+      className={`relative ${fit === "cover" ? "overflow-hidden" : ""} ${className}`}
+    >
       <Image
         src={src}
         alt={alt}
         fill
         priority={priority}
         sizes={sizes}
-        className="object-cover"
+        className={fit === "cover" ? "object-cover" : "object-contain"}
         onError={() => setErrored(true)}
       />
     </div>

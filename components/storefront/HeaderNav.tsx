@@ -97,15 +97,19 @@ export default function HeaderNav({
       )}
 
       {/* Side panel */}
-      <div
-        id="mobile-nav-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu"
-        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[80%] bg-[var(--background)] text-[var(--foreground)] border-l border-black/10 dark:border-white/10 shadow-lg md:hidden transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+<div
+  className="fixed inset-0 overflow-hidden pointer-events-none z-50 md:hidden"
+  aria-hidden={!isOpen}
+>
+  <div
+    id="mobile-nav-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu"
+    className={`absolute inset-y-0 right-0 w-72 max-w-[80%] bg-[var(--background)] text-[var(--foreground)] border-l border-black/10 dark:border-white/10 shadow-lg transform transition-transform duration-300 ease-in-out pointer-events-auto ${
+      isOpen ? "translate-x-0" : "translate-x-full"
+    }`}
+  >
         <div className="flex items-center justify-between px-4 py-4 border-b border-black/10 dark:border-white/10">
           <span className="font-display font-semibold text-brand">Menu</span>
           <button
@@ -142,6 +146,7 @@ export default function HeaderNav({
             onNavigate={() => setIsOpen(false)}
           />
         </nav>
+      </div>
       </div>
     </>
   );

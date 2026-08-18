@@ -25,6 +25,7 @@ type CartItemProps = {
 export default function CartItem({ item }: CartItemProps) {
   const [quantity, setQuantity] = useState(item.quantity);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isRemoving, setIsRemoving] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
 
   const product = item.products;
@@ -77,7 +78,7 @@ export default function CartItem({ item }: CartItemProps) {
   async function handleRemove() {
     // Remove from the UI immediately.
     setIsRemoved(true);
-    setIsUpdating(true);
+    setIsRemoving(true);
 
     try {
       await removeCartItem(item.id);
@@ -93,13 +94,35 @@ export default function CartItem({ item }: CartItemProps) {
           : "Unable to remove item."
       );
     } finally {
-      setIsUpdating(false);
+      setIsRemoving(false);
     }
   }
 
   return (
-    <div className="flex gap-4 border rounded-xl p-4">
-      <div className="relative w-24 h-24 shrink-0 bg-gray-100 rounded-md overflow-hidden">
+    <div className="relative flex gap-4 border border-border rounded-2xl p-4 bg-white dark:bg-white/[0.03]">
+      <button
+        type="button"
+        onClick={handleRemove}
+        disabled={isRemoving}
+        aria-label={`Remove ${product.name} from cart`}
+        className="absolute top-3 right-3 flex items-center justify-center w-6 h-6 rounded-full bg-foreground text-white shadow hover:opacity-90 transition disabled:opacity-60"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-3.5 h-3.5"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 shrink-0 bg-border/40 rounded-xl overflow-hidden">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -108,57 +131,50 @@ export default function CartItem({ item }: CartItemProps) {
             className="object-cover"
           />
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+          <div className="flex items-center justify-center h-full text-muted text-sm">
             No image
           </div>
         )}
       </div>
 
-      <div className="flex-1">
-        <h2 className="text-2xl font-medium text-foreground">
+      <div className="flex-1 min-w-0 pr-8">
+        <h2 className="font-medium text-foreground line-clamp-2 pr-2">
           {product.name}
         </h2>
 
-        <p className="text-foreground font-display font-bold mt-1">
+        <p className="text-sm font-display font-bold text-foreground mt-1">
           {Number(product.price).toFixed(2)} ₼
         </p>
 
-        <div className="flex items-center gap-3 mt-3">
-          <button
-            type="button"
-            disabled={isUpdating || quantity <= 1}
-            onClick={() => changeQuantity(quantity - 1)}
-            className="w-8 h-8 border rounded-md disabled:opacity-40"
-          >
-            −
-          </button>
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center border border-border rounded-full overflow-hidden">
+            <button
+              type="button"
+              disabled={isUpdating || quantity <= 1}
+              onClick={() => changeQuantity(quantity - 1)}
+              className="w-8 h-8 flex items-center justify-center text-foreground disabled:opacity-40"
+            >
+              −
+            </button>
 
-          <span className="min-w-6 text-center">
-            {quantity}
-          </span>
+            <span className="min-w-8 text-center text-sm font-medium">
+              {quantity}
+            </span>
 
-          <button
-            type="button"
-            disabled={isUpdating || quantity >= stockQuantity}
-            onClick={() => changeQuantity(quantity + 1)}
-            className="w-8 h-8 border rounded-md disabled:opacity-40"
-          >
-            +
-          </button>
+            <button
+              type="button"
+              disabled={isUpdating || quantity >= stockQuantity}
+              onClick={() => changeQuantity(quantity + 1)}
+              className="w-8 h-8 flex items-center justify-center text-foreground disabled:opacity-40"
+            >
+              +
+            </button>
+          </div>
+
+          <p className="text-sm font-display font-bold text-citrus">
+            {(Number(product.price) * quantity).toFixed(2)} ₼
+          </p>
         </div>
-
-        <p className="text-foreground font-bold font-display mt-2">
-          Total: {(Number(product.price) * quantity).toFixed(2)} ₼
-        </p>
-
-        <button
-          type="button"
-          disabled={isUpdating}
-          onClick={handleRemove}
-          className="mt-3 text-sm text-red-600 hover:text-red-700 disabled:opacity-40"
-        >
-          Remove
-        </button>
       </div>
     </div>
   );

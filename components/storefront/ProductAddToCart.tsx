@@ -34,6 +34,9 @@ export default function ProductAddToCart({
   async function handleClick() {
     if (isAdding) return;
 
+    // Instant feedback: show "Added!" right away instead of waiting on
+    // the server round trip, then roll back if it actually fails.
+    setJustAdded(true);
     setIsAdding(true);
     setError("");
 
@@ -41,9 +44,8 @@ export default function ProductAddToCart({
 
     setIsAdding(false);
 
-    if (result.success) {
-      setJustAdded(true);
-    } else {
+    if (!result.success) {
+      setJustAdded(false);
       setError(result.message ?? "Could not add to cart.");
     }
   }
@@ -78,7 +80,7 @@ export default function ProductAddToCart({
           justAdded ? "bg-leaf" : "bg-foreground hover:opacity-90"
         }`}
       >
-        {justAdded ? "Added!" : isAdding ? "Adding..." : "Add to Cart"}
+        {justAdded ? "Added!" : "Add to Cart"}
       </button>
 
       {error && (

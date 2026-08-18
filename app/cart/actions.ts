@@ -104,6 +104,7 @@ export async function removeCartItem(cartItemId: string) {
   }
 
   revalidatePath("/cart");
+  revalidatePath("/", "layout");
 }
 
 export async function validateCartStock() {

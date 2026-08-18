@@ -26,6 +26,9 @@ export default function AddToCartButton({ productId }: { productId: string }) {
 
     if (isAdding) return;
 
+    // Instant feedback: flip to the checkmark right away instead of
+    // waiting on the server round trip, then roll back if it fails.
+    setJustAdded(true);
     setIsAdding(true);
     setError("");
 
@@ -33,9 +36,8 @@ export default function AddToCartButton({ productId }: { productId: string }) {
 
     setIsAdding(false);
 
-    if (result.success) {
-      setJustAdded(true);
-    } else {
+    if (!result.success) {
+      setJustAdded(false);
       setError(result.message ?? "Could not add to cart.");
     }
   }

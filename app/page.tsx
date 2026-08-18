@@ -16,7 +16,7 @@ export default function Home() {
               </span>
 
               <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold font-display leading-tight">
-                Qədiroğlu MMC
+                Qediroglu MMC
               </h1>
 
               <p className="mt-4 text-base sm:text-lg text-white/85 max-w-xl mx-auto lg:mx-0">
@@ -46,21 +46,22 @@ export default function Home() {
             <div className="hidden lg:block" aria-hidden="true" />
           </div>
 
-          {/* Mobile / tablet: normal contained cutout below the text */}
+          {/* Mobile / tablet: dedicated banner-style image, not a
+             shrunk-down copy of the desktop cutout */}
           <div className="lg:hidden mt-10">
             <ImageOrPlaceholder
-              src={getHomeImageUrl("hero")}
-              alt="Qediroglu customer with fresh groceries"
-              fit="contain"
-              className="aspect-square w-full max-w-xs mx-auto"
+              src={getHomeImageUrl("heroMobile")}
+              alt="Qediroglu fresh groceries"
+              fit="cover"
+              className="aspect-[4/3] w-full rounded-2xl"
               priority
               sizes="(max-width: 1024px) 100vw"
             />
           </div>
         </div>
 
-        {/* Desktop: giant cutout bleeding past the text column, right up
-           to the edge of the screen — not boxed in. */}
+        {/* Desktop: giant image filling the full height of the box, right
+           up to the edge of the screen — not boxed in. */}
         <div className="hidden lg:block absolute inset-y-0 right-0 w-[46%] xl:w-[50%] pointer-events-none">
           <ImageOrPlaceholder
             src={getHomeImageUrl("hero")}

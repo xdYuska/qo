@@ -21,11 +21,19 @@ export function getShopBannerUrl(): string {
 }
 
 export function getHomeImageUrl(
-  section: "hero" | "about" | "distribution" | "imports" | "locations"
+  section:
+    | "hero"
+    | "heroMobile"
+    | "about"
+    | "distribution"
+    | "imports"
+    | "locations"
 ): string {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  // The hero image is a transparent-background cutout PNG so it can bleed
-  // past its container; the rest are regular cropped photos.
-  const ext = section === "hero" ? "png" : "jpg";
-  return `${supabaseUrl}/storage/v1/object/public/branding/home-${section}.${ext}`;
+  // Hero images are transparent-background cutout PNGs; the rest are
+  // regular cropped photos.
+  const isHero = section === "hero" || section === "heroMobile";
+  const ext = isHero ? "png" : "jpg";
+  const fileName = section === "heroMobile" ? "hero-mobile" : section;
+  return `${supabaseUrl}/storage/v1/object/public/branding/home-${fileName}.${ext}`;
 }

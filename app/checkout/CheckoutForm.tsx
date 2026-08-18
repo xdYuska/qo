@@ -24,6 +24,9 @@ type CheckoutFormProps = {
   addresses?: Address[];
 };
 
+const inputClass =
+  "w-full border border-border rounded-lg px-3 py-2.5 text-sm bg-white dark:bg-transparent text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition disabled:opacity-60";
+
 export default function CheckoutForm({
   initialFullName = "",
   initialEmail = "",
@@ -77,9 +80,9 @@ export default function CheckoutForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label htmlFor="fullName" className="block text-sm font-medium mb-1">
+        <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-1.5">
           Full Name
         </label>
 
@@ -90,69 +93,85 @@ export default function CheckoutForm({
           value={fullName}
           onChange={(event) => setFullName(event.target.value)}
           disabled={isSubmitting}
-          className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
+          className={inputClass}
           placeholder="Your full name"
         />
       </div>
 
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium mb-1">
-          Phone
-        </label>
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1.5">
+            Phone
+          </label>
 
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          value={phone}
-          onChange={(event) => setPhone(event.target.value)}
-          disabled={isSubmitting}
-          className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
-          placeholder="Your phone number"
-        />
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+            disabled={isSubmitting}
+            className={inputClass}
+            placeholder="Your phone number"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5">
+            Email
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={isSubmitting}
+            className={inputClass}
+            placeholder="you@example.com"
+          />
+        </div>
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1">
-          Email
-        </label>
-
-        <input
-          id="email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          disabled={isSubmitting}
-          className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
-          placeholder="you@example.com"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium text-foreground mb-2">
           Payment Method
         </label>
 
-        <div className="space-y-2">
-          <label className="flex items-center gap-2 text-sm">
+        <div className="grid sm:grid-cols-2 gap-3">
+          <label
+            className={`flex items-center gap-3 border rounded-lg px-4 py-3 text-sm cursor-pointer transition ${
+              paymentMethod === "cash_on_delivery"
+                ? "border-brand bg-brand/5"
+                : "border-border hover:border-black/20 dark:hover:border-white/20"
+            }`}
+          >
             <input
               type="radio"
               name="paymentMethod"
               checked={paymentMethod === "cash_on_delivery"}
               onChange={() => setPaymentMethod("cash_on_delivery")}
               disabled={isSubmitting}
+              className="accent-brand"
             />
             Cash on Delivery
           </label>
 
-          <label className="flex items-center gap-2 text-sm">
+          <label
+            className={`flex items-center gap-3 border rounded-lg px-4 py-3 text-sm cursor-pointer transition ${
+              paymentMethod === "online"
+                ? "border-brand bg-brand/5"
+                : "border-border hover:border-black/20 dark:hover:border-white/20"
+            }`}
+          >
             <input
               type="radio"
               name="paymentMethod"
               checked={paymentMethod === "online"}
               onChange={() => setPaymentMethod("online")}
               disabled={isSubmitting}
+              className="accent-brand"
             />
             Online Payment (Card)
           </label>
@@ -160,7 +179,7 @@ export default function CheckoutForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium text-foreground mb-1.5">
           Delivery Address
         </label>
 
@@ -180,7 +199,7 @@ export default function CheckoutForm({
                 }
               }}
               disabled={isSubmitting}
-              className="w-full border rounded-md px-3 py-2 disabled:opacity-60"
+              className={inputClass}
             >
               {addresses.map((a) => (
                 <option key={a.id} value={a.id}>
@@ -191,17 +210,17 @@ export default function CheckoutForm({
             </select>
 
             {selectedAddressId !== "new" && (
-              <p className="text-sm text-gray-500 mt-1">{address}</p>
+              <p className="text-sm text-muted mt-1.5">{address}</p>
             )}
           </>
         )}
 
         {selectedAddressId === "new" && (
-          <>
+          <div className={addresses.length > 0 ? "mt-3" : ""}>
             <AddressPicker onAddressChange={setAddress} disabled={isSubmitting} />
 
             <details className="mt-2">
-              <summary className="text-xs text-gray-500 cursor-pointer">
+              <summary className="text-xs text-muted cursor-pointer">
                 Can&apos;t find your address? Enter it manually
               </summary>
               <textarea
@@ -209,16 +228,16 @@ export default function CheckoutForm({
                 value={address}
                 onChange={(event) => setAddress(event.target.value)}
                 disabled={isSubmitting}
-                className="w-full border rounded-md px-3 py-2 mt-2 disabled:opacity-60"
+                className={`${inputClass} mt-2`}
                 placeholder="Type your delivery address"
               />
             </details>
-          </>
+          </div>
         )}
       </div>
 
       {errorMessage && (
-        <div className="border border-red-300 bg-red-50 text-red-700 rounded-md px-4 py-3">
+        <div className="border border-red-300 bg-red-50 text-red-700 text-sm rounded-lg px-4 py-3">
           {errorMessage}
         </div>
       )}
@@ -226,7 +245,7 @@ export default function CheckoutForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-5 py-3 rounded-md bg-foreground text-background hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-5 py-3 rounded-lg bg-foreground text-white text-sm font-medium hover:opacity-90 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition duration-200 ease-out disabled:opacity-50 disabled:pointer-events-none"
       >
         {isSubmitting ? "Placing Order..." : "Place Order"}
       </button>
